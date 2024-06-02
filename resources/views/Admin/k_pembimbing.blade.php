@@ -29,12 +29,12 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>NIP</th>
-                                        <th>NAME</th>
-                                        <th>NO TLP</th>
-                                        <th>EMAIL</th>
-                                        <th>PASSWORD</th>
-                                        <th>TTD</th>
+                                        <th>NAMA MAHASISWA</th>
+                                        <th>PEMBIMBING 1</th>
+                                        <th>PEMBIMBING 2</th>
+                                        <th>PENGUJI 1</th>
+                                        <th>PENGUJI 2</th>
+                                        <th>PENGUJI 3</th>
                                         <th class="text-center">ACTION</th>
                                     </tr>
                                 </thead>
@@ -43,34 +43,24 @@
                                         $no = 1;
                                     @endphp
                                     @foreach($arr as $key => $val)
-                                        <tr>
-                                            <td>{{$no++}}</td>
-                                            <td>{{$val->nik}}</td>
-                                            <td>{{$val->name}}</td>
-                                            <td>{{$val->no_tlp}}</td>
-                                            <td>{{$val->email}}</td>
-                                            <td>*** *** ***</td>
-                                            <td>
-                                                @if($val->ttd == '-')
-                                                    <span class="badge bg-danger">Belum Upload</span>
-                                                @else
-                                                    <span class="badge bg-success">Sudah Upload</span>
-                                                @endif
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn btn-outline-primary" data-name="upload_ttd" data-item="{{$val->id}}">
-                                                    <i class="bi bi-upload me-0"></i>
-                                                </button>
+                                    <tr>
+                                        <td>{{$no++}}</td>
+                                        <td>{{$val['name_mhs']}}</td>
+                                        <td>{{$val['name_dospem1']}}</td>
+                                        <td>{{$val['name_dospem2']}}</td>
+                                        <td>{{$val['name_dospej1']}}</td>
+                                        <td>{{$val['name_dospej2']}}</td>
+                                        <td>{{$val['name_dospej3']}}</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-outline-info" data-name="edit" data-item="{{$val['id']}}">
+                                                <i class='bx bx-edit me-0'></i>
+                                            </button>
 
-                                                <button type="button" class="btn btn-outline-info" data-name="edit" data-item="{{$val->id}}">
-                                                    <i class='bx bx-edit me-0'></i>
-                                                </button>
-
-                                                <button type="button" class="btn btn-outline-danger" data-name="delete" data-item="{{$val->id}}">
-                                                    <i class='bx bxs-trash me-0'></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                            <button type="button" class="btn btn-outline-danger" data-name="delete" data-item="{{$val['id']}}">
+                                                <i class='bx bxs-trash me-0'></i>
+                                            </button>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -81,5 +71,190 @@
         </div>
     </section>
 </main>
+
+{{-- Modal Add --}}
+<div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Kelola Dosen Pembimbing Dan Penguji</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-style">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Pilih Mahasiswa</label>
+                                <select data-name="id_mhs" class="form-select select-2-add">
+                                    <option value="">-- Select Mahasiswa --</option>
+                                    @foreach ($mhs as $key => $value)
+                                        <option value="{{ $value->id }}">{{ $value->nik }} - {{ $value->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <h5 class="text-bold mb-0">Dosen Pembimbing</h5>
+                            <hr class="mt-0">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Dosen Pembimbing 1</label>
+                                <select data-name="id_dospem_1" class="form-select select-2-add">
+                                    <option value="">-- Select Dosen Pembimbing 1 --</option>
+                                    @foreach ($dosen as $key => $value)
+                                        <option value="{{ $value->id }}">{{ $value->nik }} - {{ $value->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Dosen Pembimbing 2</label>
+                                <select data-name="id_dospem_2" class="form-select select-2-add">
+                                    <option value="">-- Select Dosen Pembimbing 2 --</option>
+                                    @foreach ($dosen as $key => $value)
+                                        <option value="{{ $value->id }}">{{ $value->nik }} - {{ $value->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <h5 class="text-bold mb-0">Dosen Penguji</h5>
+                            <hr class="mt-0">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Dosen Penguji 1</label>
+                                <select data-name="id_dospej_1" class="form-select select-2-add">
+                                    <option value="">-- Select Dosen Penguji 1 --</option>
+                                    @foreach ($dosen as $key => $value)
+                                        <option value="{{ $value->id }}">{{ $value->nik }} - {{ $value->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Dosen Penguji 2</label>
+                                <select data-name="id_dospej_2" class="form-select select-2-add">
+                                    <option value="">-- Select Dosen Penguji 2 --</option>
+                                    @foreach ($dosen as $key => $value)
+                                        <option value="{{ $value->id }}">{{ $value->nik }} - {{ $value->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Dosen Penguji 3</label>
+                                <select data-name="id_dospej_3" class="form-select select-2-add">
+                                    <option value="">-- Select Dosen Penguji 3 --</option>
+                                    @foreach ($dosen as $key => $value)
+                                        <option value="{{ $value->id }}">{{ $value->nik }} - {{ $value->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-name="save_add">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal ADD --}}
+
+
+{{-- JS Add Kelola Dosen --}}
+<script>
+    $(document).on("click", "[data-name='add']", function(e) {
+        $("[data-name='id_mhs']").val('').trigger("change");
+        $("[data-name='id_dospem_1']").val('').trigger("change");
+        $("[data-name='id_dospem_2']").val('').trigger("change");
+        $("[data-name='id_dospej_1']").val('').trigger("change");
+        $("[data-name='id_dospej_2']").val('').trigger("change");
+        $("[data-name='id_dospej_3']").val('').trigger("change");
+
+        $("#modal_add").modal('show');
+    });
+
+    $(document).on("click", "[data-name='save_add']", function(e) {
+        var id_mhs      = $("[data-name='id_mhs']").val();
+        var id_dospem_1 = $("[data-name='id_dospem_1']").val();
+        var id_dospem_2 = $("[data-name='id_dospem_2']").val();
+        var id_dospej_1 = $("[data-name='id_dospej_1']").val();
+        var id_dospej_2 = $("[data-name='id_dospej_2']").val();
+        var id_dospej_3 = $("[data-name='id_dospej_3']").val();
+
+        var data = {
+            id_mhs : id_mhs,
+            id_dospem_1 : id_dospem_1,
+            id_dospem_2 : id_dospem_2,
+            id_dospej_1 : id_dospej_1,
+            id_dospej_2 : id_dospej_2,
+            id_dospej_3 : id_dospej_3
+        };
+
+        if(id_mhs === '' || id_dospem_1 === '' || id_dospej_1 === ''){
+            Swal.fire({
+                position: 'center',
+                title: 'Form is empty!',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 1000
+            })
+        }else{
+            $.ajax({
+                type: "POST",
+                url: "{{route('add_setting_dosen')}}",
+                data: {data: data},
+                cache: false,
+                success: function(response) {
+                    // console.log(response);
+                    Swal.fire({
+                        position: 'center',
+                        title: 'Success!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then((response) => {
+                        location.reload();
+                    })
+                },
+                error: function(response) {
+                    Swal.fire({
+                        position: 'center',
+                        title: 'Action Not Valid!',
+                        icon: 'warning',
+                        showConfirmButton: true,
+                        // timer: 1500
+                    }).then((response) => {
+                        // location.reload();
+                    })
+                }
+            });
+        }
+    });
+</script>
+{{-- End JS Add Kelola Dosen --}}
+
+{{-- JS Datatable --}}
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
+{{-- End JS Datatable --}}\
+
+{{-- Select2 --}}
+<script>
+    $(".select-2-add").select2({
+        allowClear: false,
+        width: '100%',
+        dropdownParent: $("#modal_add")
+    });
+
+    $(".select-2-edit").select2({
+        allowClear: false,
+        width: '100%',
+        dropdownParent: $("#modal_edit")
+    });
+</script>
+{{-- End Select2 --}}
+
 
 @stop

@@ -63,8 +63,20 @@
                 </ul>
             </li>
 
+            @php
+                $menu    = ['kpembimbing'];
+            @endphp
+            @if(in_array(Route::currentRouteName() , $menu))
+                @php
+                    $menu_active = '';
+                @endphp
+            @else
+                @php
+                    $menu_active = 'collapsed';
+                @endphp
+            @endif
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link {{$menu_active}}" href="{{route('kpembimbing')}}">
                     <i class="bi bi-grid"></i>
                     <span>Kelola Dosen</span>
                 </a>

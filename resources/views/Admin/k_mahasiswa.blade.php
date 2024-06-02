@@ -224,7 +224,7 @@
             ttd : ttd
         };
 
-        console.log(data);
+        // console.log(data);
 
         if (nik === '' || name === '' || no_tlp === '' || email === '' || password === '') {
             Swal.fire({
