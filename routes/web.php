@@ -35,6 +35,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kpembimbing', [MainController::class, 'kpembimbing'])->name('kpembimbing');
         
         Route::post('add_setting_dosen', [MainController::class, 'add_setting_dosen'])->name('add_setting_dosen');
+        Route::post('edit_kelola_dospem', [MainController::class, 'edit_kelola_dospem'])->name('edit_kelola_dospem');
+        Route::post('actshowkeloladospem', [MainController::class, 'actshowkeloladospem'])->name('actshowkeloladospem');
+        
         // End Kelola Dosen
     });
 
