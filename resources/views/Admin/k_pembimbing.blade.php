@@ -144,7 +144,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -424,7 +424,7 @@
         $('#dataTable').DataTable();
     });
 </script>
-{{-- End JS Datatable --}}\
+{{-- End JS Datatable --}}
 
 {{-- Select2 --}}
 <script>

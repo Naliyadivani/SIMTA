@@ -28,17 +28,25 @@ Route::middleware(['auth'])->group(function () {
         Route::post('delete_users', [MainController::class, 'delete_users'])->name('delete_users');
         Route::post('actshowusers', [MainController::class, 'actshowusers'])->name('actshowusers');
         Route::post('actphoto', [MainController::class, 'actphoto'])->name('actphoto');
-        Route::post('upload_ttd', [MainController::class, 'upload_ttd'])->name('upload_ttd');        
+        Route::post('upload_ttd', [MainController::class, 'upload_ttd'])->name('upload_ttd');
         // End Kelola Akun Pengguna
 
         // Kelola Dosen
         Route::get('kpembimbing', [MainController::class, 'kpembimbing'])->name('kpembimbing');
-        
+
         Route::post('add_setting_dosen', [MainController::class, 'add_setting_dosen'])->name('add_setting_dosen');
         Route::post('edit_kelola_dospem', [MainController::class, 'edit_kelola_dospem'])->name('edit_kelola_dospem');
         Route::post('actshowkeloladospem', [MainController::class, 'actshowkeloladospem'])->name('actshowkeloladospem');
-        
         // End Kelola Dosen
+    });
+
+    Route::middleware(['auth'],'role_id:3')->group(function () {
+
+        // Log Bimbingan
+        Route::get('mhslogbimbingan', [MainController::class, 'mhslogbimbingan'])->name('mhslogbimbingan');
+
+        // En Log Bimbingan
+
     });
 
 });

@@ -142,8 +142,20 @@
         @if($idnusr->role_id == 3)
             <li class="nav-heading">Menu Mahasiswa</li>
 
+            @php
+                $menu    = ['mhslogbimbingan'];
+            @endphp
+            @if(in_array(Route::currentRouteName() , $menu))
+                @php
+                    $menu_active = '';
+                @endphp
+            @else
+                @php
+                    $menu_active = 'collapsed';
+                @endphp
+            @endif
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link {{$menu_active}}" href="{{route('mhslogbimbingan')}}">
                     <i class="bi bi-grid"></i>
                     <span>Log Bimbingan</span>
                 </a>

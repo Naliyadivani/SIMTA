@@ -264,18 +264,40 @@ class MainController extends Controller
         $update_by  = auth::user()->id;
 
         $data   = array(
-            'id_mhs' => $dt['id_mhs'], 
-            'id_dospem_1' => $dt['id_dospem_1'], 
-            'id_dospem_2' => $dt['id_dospem_2'], 
-            'id_dospej_1' => $dt['id_dospej_1'], 
-            'id_dospej_2' => $dt['id_dospej_2'], 
+            'id_mhs' => $dt['id_mhs'],
+            'id_dospem_1' => $dt['id_dospem_1'],
+            'id_dospem_2' => $dt['id_dospem_2'],
+            'id_dospej_1' => $dt['id_dospej_1'],
+            'id_dospej_2' => $dt['id_dospej_2'],
             'id_dospej_3' => $dt['id_dospej_3'],
             'update_by' => $update_by,
         );
         DB::table('trx_setting_bimbingan')->where('id', $dt['id'])->update($data);
         return response('success');
     }
-    
+
     // End Kelola Dosen
+
+    // Mahasiswa
+    function mhslogbimbingan(): object {
+        $arr        = Admin::getdatasettingpembimbing();
+        $setdospem  = DB::table('users')->where('id', auth::user()->id)->first();
+        $setdospem  = response()->json($setdospem);
+
+        $data = array(
+            'idnusr'    => $this->idnusr(),
+            'title'     => 'Log Bimbingan',
+            'arr'       => $arr,
+            'setdospem' => $setdospem
+        );
+
+        return view('Mahasiswa.log_bimbingan')->with($data);
+    }
+
+    function add_log_bimbingan_mhs(Request $request): object {
+
+    }
+
+    // End Mahasiswa
 
 }
