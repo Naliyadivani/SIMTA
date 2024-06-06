@@ -40,13 +40,23 @@ Route::middleware(['auth'])->group(function () {
         // End Kelola Dosen
     });
 
-    Route::middleware(['auth'],'role_id:3')->group(function () {
+    Route::middleware(['auth'],'role_id:2')->group(function () {
 
         // Log Bimbingan
-        Route::get('mhslogbimbingan', [MainController::class, 'mhslogbimbingan'])->name('mhslogbimbingan');
+        Route::get('admlogbimbingan', [MainController::class, 'admlogbimbingan'])->name('admlogbimbingan');
 
         // En Log Bimbingan
 
     });
 
+    Route::middleware(['auth'],'role_id:3')->group(function () {
+
+        // Log Bimbingan
+        Route::get('mhslogbimbingan', [MainController::class, 'mhslogbimbingan'])->name('mhslogbimbingan');
+
+        Route::post('add_log_bimbingan_mhs', [MainController::class, 'add_log_bimbingan_mhs'])->name('add_log_bimbingan_mhs');
+
+        // En Log Bimbingan
+
+    });
 });

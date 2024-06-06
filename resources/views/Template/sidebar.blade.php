@@ -1,7 +1,7 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
 
-        @php
+        {{-- @php
             $menu    = ['dasbor'];
         @endphp
         @if(in_array(Route::currentRouteName() , $menu))
@@ -18,7 +18,7 @@
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
-        </li>
+        </li> --}}
 
         @if($idnusr->role_id == 1)
             <li class="nav-heading">Menu Admin</li>
@@ -93,8 +93,20 @@
         @if($idnusr->role_id == 2)
             <li class="nav-heading">Menu Dosen</li>
 
+            @php
+                $menu    = ['admlogbimbingan'];
+            @endphp
+            @if(in_array(Route::currentRouteName() , $menu))
+                @php
+                    $menu_active = '';
+                @endphp
+            @else
+                @php
+                    $menu_active = 'collapsed';
+                @endphp
+            @endif
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link {{$menu_active}}" href="{{route('admlogbimbingan')}}">
                     <i class="bi bi-grid"></i>
                     <span>Log Bimbingan</span>
                 </a>

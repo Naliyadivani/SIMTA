@@ -1,6 +1,6 @@
 /*
-SQLyog Community v13.1.9 (64 bit)
-MySQL - 10.11.4-MariaDB : Database - db_simta
+SQLyog Community v13.2.1 (64 bit)
+MySQL - 10.11.8-MariaDB : Database - db_simta
 *********************************************************************
 */
 
@@ -168,7 +168,54 @@ CREATE TABLE `sessions` (
 /*Data for the table `sessions` */
 
 insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values 
-('PxjYkhiYao2SzkSKQvx8wxgvtkciranw9HG9tppw',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoia3ZxOFFKellFaktrT2E4OU5mdFBhRHV1V3lMSmc3ajV5SXB0OHd3bCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHBzOi8vc2ltdGEua2dkci9rcGVtYmltYmluZyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==',1717381298);
+('6xrN1y7OBYtAkaSu51SQ9VwzvpbxwfO9kpF5R8Bn',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoicjRXZG1kaGhaN1hYSTVrMlZqWk1jTkU2UjQ1UFFkRDJ4VXVnbTRwRSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjU6Imh0dHBzOi8vc2ltdGEua2dkci9rZG9zZW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1717632865),
+('HuP8mDezQxP5JYxtz5IzZT7khyOOIx8nPVtMDyxQ',3,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiV2lScFdsZjUzekRoTWJMdFVMVVZUVUVVRWFuNUM3cTFvZFFzdU1NSCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNDoiaHR0cHM6Ly9zaW10YS5rZ2RyL21oc2xvZ2JpbWJpbmdhbiI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM0OiJodHRwczovL3NpbXRhLmtnZHIvbWhzbG9nYmltYmluZ2FuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mzt9',1717632810),
+('mKLfRBSnTF24Cw6jBUGHJaQ4461T9wqi8U2SVp9C',5,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVTBqSVRERXNydkZDSjA0ekhDUkFLZGlyVFdhNlRzY2RwZ09GVndNdiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHBzOi8vc2ltdGEua2dkci9hZG1sb2diaW1iaW5nYW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo1O30=',1717638503);
+
+/*Table structure for table `trx_detail_log_bimbingan` */
+
+DROP TABLE IF EXISTS `trx_detail_log_bimbingan`;
+
+CREATE TABLE `trx_detail_log_bimbingan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_log` int(11) DEFAULT NULL,
+  `id_dospem` int(11) DEFAULT NULL,
+  `posisi` varchar(255) DEFAULT NULL,
+  `catatan` text DEFAULT NULL,
+  `plant` text DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `update_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `trx_detail_log_bimbingan` */
+
+insert  into `trx_detail_log_bimbingan`(`id`,`id_log`,`id_dospem`,`posisi`,`catatan`,`plant`,`status`,`is_active`,`last_update`,`update_by`) values 
+(1,1,5,'Pembimbing 1','asdasdas','asdasdas',1,1,'2024-06-06 06:24:36',NULL),
+(2,1,6,'Penguji 1','asdasdsa','asdasdas',1,1,'2024-06-06 06:24:36',NULL);
+
+/*Table structure for table `trx_log_bimbingan` */
+
+DROP TABLE IF EXISTS `trx_log_bimbingan`;
+
+CREATE TABLE `trx_log_bimbingan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_mhs` int(11) DEFAULT NULL,
+  `tema` text DEFAULT NULL,
+  `catatan` text DEFAULT NULL,
+  `plant` text DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `trx_log_bimbingan` */
+
+insert  into `trx_log_bimbingan`(`id`,`id_mhs`,`tema`,`catatan`,`plant`,`tanggal`,`is_active`,`last_update`) values 
+(1,3,'asdasdasd',NULL,NULL,'2024-06-12',1,'2024-06-06 06:24:36');
 
 /*Table structure for table `trx_setting_bimbingan` */
 
@@ -183,14 +230,16 @@ CREATE TABLE `trx_setting_bimbingan` (
   `id_dospej_2` int(11) DEFAULT NULL,
   `id_dospej_3` int(11) DEFAULT NULL,
   `is_active` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `update_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `trx_setting_bimbingan` */
 
-insert  into `trx_setting_bimbingan`(`id`,`id_mhs`,`id_dospem_1`,`id_dospem_2`,`id_dospej_1`,`id_dospej_2`,`id_dospej_3`,`is_active`,`update_by`) values 
-(1,4,5,NULL,6,NULL,NULL,1,1);
+insert  into `trx_setting_bimbingan`(`id`,`id_mhs`,`id_dospem_1`,`id_dospem_2`,`id_dospej_1`,`id_dospej_2`,`id_dospej_3`,`is_active`,`last_update`,`update_by`) values 
+(1,4,5,NULL,6,NULL,NULL,1,'2024-06-05 17:29:49',1),
+(2,3,5,NULL,6,NULL,NULL,1,'2024-06-05 17:29:49',1);
 
 /*Table structure for table `users` */
 

@@ -278,12 +278,30 @@ class MainController extends Controller
 
     // End Kelola Dosen
 
+    // Admin
+    function admlogbimbingan(): object {
+        $id_dospem  = auth::user()->id;
+        $arr        = DB::table('trx_detail_log_bimbingan')->select('trx_detail_log_bimbingan.*', 'b.tema', 'b.id_mhs', 'b.tanggal', 'c.name', 'c.nik')
+                    ->leftJoin('trx_log_bimbingan AS b', 'b.id', '=', 'trx_detail_log_bimbingan.id_log')
+                    ->leftJoin('users AS c', 'c.id', '=', 'b.id_mhs')
+                    ->where('trx_detail_log_bimbingan.id_dospem', $id_dospem)->where('trx_detail_log_bimbingan.is_active', 1)->get();
+        $data = array(
+            'idnusr'    => $this->idnusr(),
+            'title'     => 'Log Bimbingan',
+            'arr'       => $arr
+        );
+
+        return view('Dosen.log_bimbingan')->with($data);
+    }
+
+
+    // End Admin
+
     // Mahasiswa
     function mhslogbimbingan(): object {
-        $arr        = Admin::getdatasettingpembimbing();
-        $setdospem  = DB::table('users')->where('id', auth::user()->id)->first();
-        $setdospem  = response()->json($setdospem);
-
+        $id_mhs     = auth::user()->id;
+        $arr        = DB::table('trx_log_bimbingan')->where('id_mhs', $id_mhs)->where('is_active', 1)->get();
+        $setdospem  = DB::table('trx_setting_bimbingan')->where('id_mhs', auth::user()->id)->where('is_active', 1)->first();
         $data = array(
             'idnusr'    => $this->idnusr(),
             'title'     => 'Log Bimbingan',
@@ -295,7 +313,38 @@ class MainController extends Controller
     }
 
     function add_log_bimbingan_mhs(Request $request): object {
+        $id_mhs     = $request['id_mhs'];
+        $tema       = $request['tema'];
+        $tanggal    = $request['tanggal'];
+        $detail     = $request['detail'];
 
+        $data   = array(
+            'id_mhs'    => $id_mhs,
+            'tema'      => $tema,
+            'tanggal'   => $tanggal,
+            'is_active' => 1
+        );
+        $log        = DB::table('trx_log_bimbingan')->insert([$data]);
+
+        if($log){
+            $arr = DB::table('trx_log_bimbingan')->where('id_mhs', $id_mhs)->where('tanggal', $tanggal)->first();
+
+            foreach($detail as $key => $val){
+                $data   = array(
+                    'id_log'    => $arr->id,
+                    'id_dospem' => $val['id_dospem'],
+                    'posisi'    => $val['posisi'],
+                    'catatan'   => $val['catatan'],
+                    'plant'     => $val['plant'],
+                    'status'    => 1,
+                    'is_active' => 1
+                );
+                DB::table('trx_detail_log_bimbingan')->insert([$data]);
+            }
+            return response('success');
+        }else{
+            return response('error');
+        }
     }
 
     // End Mahasiswa

@@ -80,7 +80,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12">
                         <div class="card-style">
                             <div class="mb-3">
                                 <label for="" class="form-label">NIM</label>
@@ -104,7 +104,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
+                    {{-- <div class="col-4">
                         <div class="card-style">
                             <div class="card-foto">
                                 <img src="{{ asset('assets/profile/default.jpg') }}" alt="user avatar" id="img_add">
@@ -115,7 +115,7 @@
                             </div>
                             <input type="hidden" id="add_name_foto" data-name="foto">
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="modal-footer">
@@ -137,7 +137,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12">
                         <div class="card-style">
                             <div class="mb-3">
                                 <label for="" class="form-label">NIM</label>
@@ -158,10 +158,11 @@
                             <div class="mb-3">
                                 <label for="" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="" placeholder="Password" data-name="edit_password">
+                                <input type="hidden" id="" data-name="edit_id">
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
+                    {{-- <div class="col-4">
                         <div class="card-style">
                             <div class="card-foto">
                                 <img src="{{ asset('assets/profile/default.jpg') }}" alt="user avatar" id="img_edit">
@@ -171,9 +172,9 @@
                                 <label for="edit_foto">Choose File</label>
                             </div>
                             <input type="hidden" id="edit_name_foto" data-name="edit_foto">
-                            <input type="hidden" id="" data-name="edit_id">
+
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="modal-footer">
@@ -204,14 +205,14 @@
         var no_tlp  = $("[data-name='no_tlp']").val();
         var email   = $("[data-name='email']").val();
         var password    = $("[data-name='password']").val();
-        var photo   = $("[data-name='foto']").val();
+        var photo   ='default.jpg';
         var ttd     = '-';
 
-        if (photo === '') {
-            var photo = 'default.jpg';
-        } else {
-            var photo = $("[data-name='foto']").val();
-        }
+        // if (photo === '') {
+        //     var photo = 'default.jpg';
+        // } else {
+        //     var photo = $("[data-name='foto']").val();
+        // }
 
         var data = {
             role_id : role_id,
@@ -344,15 +345,15 @@
         var no_tlp  = $("[data-name='edit_no_tlp']").val();
         var email   = $("[data-name='edit_email']").val();
         var password    = $("[data-name='edit_password']").val();
-        var photo   = $("[data-name='edit_foto']").val();
+        var photo   = 'default.jpg';
         var ttd     = '-';
         var is_active = 1;
 
-        if (photo === '') {
-            var photo = 'default.jpg';
-        } else {
-            var photo = $("[data-name='edit_foto']").val();
-        }
+        // if (photo === '') {
+        //     var photo = 'default.jpg';
+        // } else {
+        //     var photo = $("[data-name='edit_foto']").val();
+        // }
 
         var data = {
             id : id,
@@ -474,7 +475,7 @@
                         }).then((data) => {
                             location.reload();
                         })
-                    },            
+                    },
                     error: function (data) {
                         Swal.fire({
                             position:'center',

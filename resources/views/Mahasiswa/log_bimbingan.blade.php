@@ -38,65 +38,45 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td rowspan="4">1</td>
-                                        <td>h</td>
-                                        <td>j</td>
-                                        <td rowspan="4">k</td>
-                                        <td rowspan="4">d</td>
-                                        <td rowspan="4">e</td>
-                                        <td rowspan="4">q</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="display:none;">1</td>
-                                        <td>h</td>
-                                        <td>j</td>
-                                        <td style="display:none;">k</td>
-                                        <td style="display:none;">d</td>
-                                        <td style="display:none;">e</td>
-                                        <td style="display:none;">q</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="display:none;">1</td>
-                                        <td>h</td>
-                                        <td>j</td>
-                                        <td style="display:none;">k</td>
-                                        <td style="display:none;">d</td>
-                                        <td style="display:none;">e</td>
-                                        <td style="display:none;">q</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="display:none;">1</td>
-                                        <td>h</td>
-                                        <td>j</td>
-                                        <td style="display:none;">k</td>
-                                        <td style="display:none;">d</td>
-                                        <td style="display:none;">e</td>
-                                        <td style="display:none;">q</td>
-                                    </tr>
-                                    {{-- @php
+                                    @php
                                         $no = 1;
                                     @endphp
-                                    @foreach($arr as $key => $val)
-                                        <tr>
-                                            <td>{{$no++}}</td>
-                                            <td>{{$val['name_mhs']}}</td>
-                                            <td>{{$val['name_dospem1']}}</td>
-                                            <td>{{$val['name_dospem2']}}</td>
-                                            <td>{{$val['name_dospej1']}}</td>
-                                            <td>{{$val['name_dospej2']}}</td>
-                                            <td>{{$val['name_dospej3']}}</td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn btn-outline-info" data-name="edit" data-item="{{$val['id']}}">
-                                                    <i class='bx bx-edit me-0'></i>
-                                                </button>
-
-                                                <button type="button" class="btn btn-outline-danger" data-name="delete" data-item="{{$val['id']}}">
-                                                    <i class='bx bxs-trash me-0'></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    @endforeach --}}
+                                    @foreach ($arr as $key => $val)
+                                        @php
+                                            $ns = $no++;
+                                            $dt = DB::table('trx_detail_log_bimbingan')->select('trx_detail_log_bimbingan.*', 'b.name', 'b.nik')
+                                                    ->leftJoin('users AS b', 'b.id', '=', 'trx_detail_log_bimbingan.id_dospem')
+                                                    ->where('trx_detail_log_bimbingan.id_log', $val->id)->where('trx_detail_log_bimbingan.is_active', 1)->get();
+                                            $cn = count($dt);
+                                        @endphp
+                                        @foreach ($dt as $k => $v)
+                                            <tr>
+                                                @if ($k == 0)
+                                                    <td rowspan="{{$cn}}" class="text-center">{{$ns}}</td>
+                                                @else
+                                                    <td style="display: none">{{$ns}}</td>
+                                                @endif
+                                                <td>{{$v->nik}} - {{$v->name}}</td>
+                                                <td>{{$v->posisi}}</td>
+                                                @if ($k == 0)
+                                                    <td rowspan="{{$cn}}">{{ \Carbon\Carbon::parse($val->tanggal)->isoFormat('dddd, DD MMM YYYY') }}</td>
+                                                @else
+                                                    <td style="display: none">{{$val->tanggal}}</td>
+                                                @endif
+                                                <td>{{$v->catatan}}</td>
+                                                <td>{{$v->plant}}</td>
+                                                @if ($v->status == 1)
+                                                    <td><span class="badge bg-primary">Submitted</span></td>
+                                                @elseif ($v->status == 2)
+                                                    <td><span class="badge bg-success">Approved</span></td>
+                                                @elseif ($v->status == 3)
+                                                    <td><span class="badge bg-danger">Rejected</span></td>
+                                                @else
+                                                    <td><span class="badge bg-primary">Submitted</span></td>
+                                                @endif
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -109,7 +89,7 @@
 
 {{-- Modal Add --}}
 <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">ADD Bimbingan</h1>
@@ -121,7 +101,7 @@
                         <div class="card-style">
                             <div class="mb-3">
                                 <label for="" class="form-label">TEMA</label>
-                                <textarea name="" id="" cols="30"class="form-control"></textarea>
+                                <textarea name="" id="" cols="30"class="form-control" data-name="tema"></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -131,18 +111,95 @@
 
                             <hr style="margin-bottom: 0.5rem;margin-top: 0.5rem;">
 
-                            <h6>Dosen Pembimbing 1 : </h6>
+                            <div class="row">
+                                <div class="col-6">
 
-                            <div class="mb-3">
-                                <label for="" class="form-label">CATATAN</label>
-                                <textarea name="" id="" cols="30"class="form-control"></textarea>
+                                    @if ($setdospem->id_dospem_1 > 0)
+                                        <h6>Dosen Pembimbing 1 : </h6>
+                                        <input type="hidden" data-name="id_dospem[]" value="{{$setdospem->id_dospem_1}}">
+                                        <input type="hidden" data-name="posisi[]" value="Pembimbing 1">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">CATATAN</label>
+                                            <textarea name="" id="" cols="30"class="form-control" data-name="catatan[]"></textarea>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">ACTION PLANT</label>
+                                            <textarea name="" id="" cols="30"class="form-control" data-name="plant[]"></textarea>
+                                        </div>
+                                    @endif
+
+                                    @if ($setdospem->id_dospem_2 > 0)
+                                        <hr style="margin-bottom: 0.5rem;margin-top: 0.5rem;">
+
+                                        <h6>Dosen Pembimbing 2 : </h6>
+                                        <input type="hidden" data-name="id_dospem[]" value="{{$setdospem->id_dospem_2}}">
+                                        <input type="hidden" data-name="posisi[]" value="Pembimbing 2">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">CATATAN</label>
+                                            <textarea name="" id="" cols="30"class="form-control" data-name="catatan[]"></textarea>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">ACTION PLANT</label>
+                                            <textarea name="" id="" cols="30"class="form-control" data-name="plant[]"></textarea>
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <div class="col-6">
+
+                                    @if ($setdospem->id_dospej_1 > 0)
+                                        <h6>Dosen Penguji 1 : </h6>
+                                        <input type="hidden" data-name="id_dospem[]" value="{{$setdospem->id_dospej_1}}">
+                                        <input type="hidden" data-name="posisi[]" value="Penguji 1">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">CATATAN</label>
+                                            <textarea name="" id="" cols="30"class="form-control" data-name="catatan[]"></textarea>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">ACTION PLANT</label>
+                                            <textarea name="" id="" cols="30"class="form-control" data-name="plant[]"></textarea>
+                                        </div>
+                                    @endif
+
+                                    @if ($setdospem->id_dospej_2 > 0)
+                                        <hr style="margin-bottom: 0.5rem;margin-top: 0.5rem;">
+
+                                        <h6>Dosen Penguji 2 : </h6>
+                                        <input type="hidden" data-name="id_dospem[]" value="{{$setdospem->id_dospej_2}}">
+                                        <input type="hidden" data-name="posisi[]" value="Penguji 2">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">CATATAN</label>
+                                            <textarea name="" id="" cols="30"class="form-control" data-name="catatan[]"></textarea>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">ACTION PLANT</label>
+                                            <textarea name="" id="" cols="30"class="form-control" data-name="plant[]"></textarea>
+                                        </div>
+                                    @endif
+
+                                    @if ($setdospem->id_dospej_3 > 0)
+                                        <hr style="margin-bottom: 0.5rem;margin-top: 0.5rem;">
+
+                                        <h6>Dosen Penguji 3 : </h6>
+                                        <input type="hidden" data-name="id_dospem[]" value="{{$setdospem->id_dospej_3}}">
+                                        <input type="hidden" data-name="posisi[]" value="Penguji 3">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">CATATAN</label>
+                                            <textarea name="" id="" cols="30"class="form-control" data-name="catatan[]"></textarea>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">ACTION PLANT</label>
+                                            <textarea name="" id="" cols="30"class="form-control" data-name="plant[]"></textarea>
+                                        </div>
+                                    @endif
+
+                                </div>
                             </div>
-
-                            <div class="mb-3">
-                                <label for="" class="form-label">ACTION PLANT</label>
-                                <textarea name="" id="" cols="30"class="form-control"></textarea>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -159,8 +216,98 @@
 {{-- JS ADD Data --}}
 <script>
     $(document).on("click", "[data-name='add']", function(e) {
-
+        $("[data-name='tema']").val('');
+        $("[data-name='tanggal']").val('');
+        $("[data-name='catatan[]']").val('');
+        $("[data-name='plant[]']").val('');
         $("#modal_add").modal('show');
+    });
+
+    $(document).on("click", "[data-name='save_add']", function(e) {
+        var id_mhs      = "{!! $idnusr->id !!}";
+        var tema        = $("[data-name='tema']").val();
+        var tanggal     = $("[data-name='tanggal']").val();
+        var id_dospem   = [];
+        var posisi      = [];
+        var catatan     = [];
+        var plant       = [];
+        var detail      = [];
+
+        $('input[data-name="id_dospem[]"]').each(function(){
+            var content = $(this).val();
+            id_dospem.push(content);
+        });
+
+        $('input[data-name="posisi[]"]').each(function(){
+            var content = $(this).val();
+            posisi.push(content);
+        });
+
+        $('textarea[data-name="catatan[]"]').each(function(){
+            var content = $(this).val();
+            catatan.push(content);
+        });
+
+        $('textarea[data-name="plant[]"]').each(function(){
+            var content = $(this).val();
+            plant.push(content);
+        });
+
+        var x = 0;
+        $('input[data-name="id_dospem[]"]').each(function(){
+            detail.push({
+                'id_dospem': id_dospem[x],
+                'posisi': posisi[x],
+                'catatan': catatan[x],
+                'plant': plant[x],
+            });
+            x++;
+        });
+
+        if (id_mhs === '' || tema === '' || tanggal === '') {
+            Swal.fire({
+                position: 'center',
+                title: 'Form is empty!',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 1000
+            })
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "{{route('add_log_bimbingan_mhs')}}",
+                data: {
+                    id_mhs: id_mhs,
+                    tema: tema,
+                    tanggal: tanggal,
+                    detail: detail
+                },
+                cache: false,
+                success: function(response) {
+                    // console.log(response);
+                    Swal.fire({
+                        position: 'center',
+                        title: 'Success!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then((response) => {
+                        location.reload();
+                    })
+                },
+                error: function(response) {
+                    Swal.fire({
+                        position: 'center',
+                        title: 'Action Not Valid!',
+                        icon: 'warning',
+                        showConfirmButton: true,
+                        // timer: 1500
+                    }).then((response) => {
+                        // location.reload();
+                    })
+                }
+            });
+        }
     });
 </script>
 {{-- End JS ADD Data --}}

@@ -16,7 +16,15 @@ class AuthController extends Controller
     public function ShowFormLogin()
     {
         if (Auth::check()) {
-            return redirect()->route('dasbor');
+            if(auth::user()->role_id == 1){
+                return redirect()->route('kadmin');
+            }elseif(auth::user()->role_id == 2){
+                return redirect()->route('admlogbimbingan');
+            }elseif(auth::user()->role_id == 3){
+                return redirect()->route('mhslogbimbingan');
+            }else{
+                return redirect()->route('dasbor');
+            }
         }
         return view('login');
     }
