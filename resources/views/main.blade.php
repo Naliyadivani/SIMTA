@@ -75,13 +75,6 @@
                 });
             });
         </script>
-         @if (Route::currentRouteName()=='mhslogbimbingan')
-             <style>
-                #dataTable tbody tr td{
-                    border: 1px solid #dee2e6;
-                }
-             </style>
-         @endif
     </head>
     <body>
         <div class="preload-wrapper">

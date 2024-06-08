@@ -94,7 +94,7 @@
             <li class="nav-heading">Menu Dosen</li>
 
             @php
-                $menu    = ['admlogbimbingan'];
+                $menu    = ['dosenlogbimbingan','detail_log_bimbingan_dosen'];
             @endphp
             @if(in_array(Route::currentRouteName() , $menu))
                 @php
@@ -106,25 +106,39 @@
                 @endphp
             @endif
             <li class="nav-item">
-                <a class="nav-link {{$menu_active}}" href="{{route('admlogbimbingan')}}">
+                <a class="nav-link {{$menu_active}}" href="{{route('dosenlogbimbingan')}}">
                     <i class="bi bi-grid"></i>
                     <span>Log Bimbingan</span>
                 </a>
             </li>
 
+            @php
+                $menu    = ['ba_seminardosen','ba_sidangdosen'];
+            @endphp
+            @if(in_array(Route::currentRouteName() , $menu))
+                @php
+                    $menu_active    = '';
+                    $menu_show      = 'show';
+                @endphp
+            @else
+                @php
+                    $menu_active    = 'collapsed';
+                    $menu_show      = '';
+                @endphp
+            @endif
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#berita-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link {{$menu_active}}" data-bs-target="#berita-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-people-fill"></i><span>Berita Acara</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="berita-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="berita-nav" class="nav-content collapse {{$menu_show}}" data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="">
+                        <a href="{{route('ba_seminardosen')}}" class="@if(Route::currentRouteName() == 'ba_seminardosen') active @endif">
                             <i class="bi bi-circle"></i><span>BA Seminar</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="">
+                        <a href="{{route('ba_sidangdosen')}}" class="@if(Route::currentRouteName() == 'ba_sidangdosen') active @endif">
                             <i class="bi bi-circle"></i><span>BA Sidang TA</span>
                         </a>
                     </li>
@@ -173,19 +187,34 @@
                 </a>
             </li>
 
+            @php
+                $menu    = ['mhsbaseminar','ba_sidangmhs'];
+            @endphp
+            @if(in_array(Route::currentRouteName() , $menu))
+                @php
+                    $menu_active    = '';
+                    $menu_show      = 'show';
+                @endphp
+            @else
+                @php
+                    $menu_active    = 'collapsed';
+                    $menu_show      = '';
+                @endphp
+            @endif
+
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#berita-mhs-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link {{$menu_active}}" data-bs-target="#berita-mhs-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-people-fill"></i><span>Berita Acara</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="berita-mhs-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="berita-mhs-nav" class="nav-content collapse {{$menu_show}}" data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="">
+                        <a href="{{route('mhsbaseminar')}}" class="@if(Route::currentRouteName() == 'mhsbaseminar') active @endif">
                             <i class="bi bi-circle"></i><span>BA Seminar</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="">
+                        <a href="{{route('ba_sidangmhs')}}" class="@if(Route::currentRouteName() == 'ba_sidangmhs') active @endif">
                             <i class="bi bi-circle"></i><span>BA Sidang TA</span>
                         </a>
                     </li>

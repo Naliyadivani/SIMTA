@@ -19,10 +19,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            <span>List Log Bimbingan</span>
+                            <span>List BA Seminar</span>
                             <div>
                                 <button type="button" class="btn btn-info" data-name="">Unduh PDF</button>
-                                <button type="button" class="btn btn-success" data-name="add">Buat LOG BIMBINGAN</button>
+                                <button type="button" class="btn btn-success" data-name="add">Buat BA Seminar</button>
                             </div>
                         </div>
                     </div>
@@ -32,10 +32,10 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>DOSEN PEMBIMBING</th>
-                                        <th>TANGGAL BIMBINGAN</th>
-                                        <th>CATATAN BIMBINGAN</th>
-                                        <th>ACTION PLANT</th>
+                                        <th>NAMA DOSEN</th>
+                                        <th>TANGGAL SEMINAR</th>
+                                        <th>JUDUL TA</th>
+                                        <th>CATATAN SEMINAR</th>
                                         <th>STATUS</th>
                                         <th>ACTION</th>
                                     </tr>
@@ -51,11 +51,11 @@
                                             <td>
                                                 {{\Carbon\Carbon::parse($val->tanggal)->isoFormat('dddd, DD MMM YYYY')}}
                                             </td>
+                                            <td>{{$val->judul}}</td>
                                             <td>{{$val->catatan}}</td>
-                                            <td>{{$val->plant}}</td>
                                             <td>
                                                 @if ($val->status == 1)
-                                                    <button type="button" class="btn btn-outline-warning btn-sm">Sbmited</button>
+                                                    <button type="button" class="btn btn-outline-warning btn-sm">Submited</button>
                                                 @elseif ($val->status == 2)
                                                     <button type="button" class="btn btn-outline-success btn-sm">Approved</button>
                                                 @elseif ($val->status == 3)
@@ -103,9 +103,9 @@
                     <div class="col-12">
                         <div class="card-style">
                             <div class="mb-3">
-                                <label for="" class="form-label">Dosen Pembimbing</label>
+                                <label for="" class="form-label">Dosen</label>
                                 <select data-name="id_dospem" class="form-select select-2-add">
-                                    <option value="">-- Select Dosen Pembimbing --</option>
+                                    <option value="">-- Select Dosen --</option>
                                     @foreach ($dosen as $key => $value)
                                         <option value="{{ $value->id }}">{{ $value->nik }} - {{ $value->name }}</option>
                                     @endforeach
@@ -113,18 +113,18 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="" class="form-label">Tanggal Bimbingan</label>
+                                <label for="" class="form-label">Tanggal Seminar</label>
                                 <input type="text" class="form-control" id="" placeholder="" data-name="tanggal">
                             </div>
 
                             <div class="mb-3">
-                                <label for="" class="form-label">Catatan Bimbingan</label>
-                                <textarea name="" id="" cols="30"class="form-control" data-name="catatan"></textarea>
+                                <label for="" class="form-label">Judul TA</label>
+                                <textarea name="" id="" cols="30"class="form-control" data-name="judul"></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label for="" class="form-label">Action Plant</label>
-                                <textarea name="" id="" cols="30"class="form-control" data-name="plant"></textarea>
+                                <label for="" class="form-label">Catatan Seminar</label>
+                                <textarea name="" id="" cols="30"class="form-control" data-name="catatan"></textarea>
                             </div>
 
                         </div>
@@ -173,10 +173,10 @@
 {{-- JS ADD Data --}}
 <script>
     $(document).on("click", "[data-name='add']", function(e) {
-        $("[data-name='id_dospem']").val('').trigger("change");
+        $("[data-name='id_dospem']").val('').trigger("change");;
         $("[data-name='tanggal']").val('');
         $("[data-name='catatan']").val('');
-        $("[data-name='plant']").val('');
+        $("[data-name='judul']").val('');
         $("#modal_add").modal('show');
     });
 
@@ -185,9 +185,9 @@
         var id_dospem   = $("[data-name='id_dospem']").val();
         var tanggal     = $("[data-name='tanggal']").val();
         var catatan     = $("[data-name='catatan']").val();
-        var plant       = $("[data-name='plant']").val();
+        var judul       = $("[data-name='judul']").val();
 
-        if (id_mhs === '' || id_dospem === '' || tanggal === '' || catatan === '' || plant === '') {
+        if (id_mhs === '' || id_dospem === '' || tanggal === '' || catatan === '' || judul === '') {
             Swal.fire({
                 position: 'center',
                 title: 'Form is empty!',
@@ -198,13 +198,13 @@
         } else {
             $.ajax({
                 type: "POST",
-                url: "{{route('add_log_bimbingan_mhs')}}",
+                url: "{{route('add_ba_seminar_mhs')}}",
                 data: {
                     id_mhs: id_mhs,
                     id_dospem: id_dospem,
                     tanggal: tanggal,
                     catatan: catatan,
-                    plant: plant
+                    judul: judul
                 },
                 cache: false,
                 success: function(response) {
@@ -254,7 +254,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('delete_mhs_logbimbingan') }}",
+                    url: "{{ route('delete_mhs_ba_seminar') }}",
                     data: {id:id},
                     cache: false,
                     success: function(data) {
@@ -293,7 +293,7 @@
 
         $.ajax({
             type: "POST",
-            url: "{{route('show_log_bimbingan_mhs')}}",
+            url: "{{route('show_ba_seminar_mhs')}}",
             data: {
                 id: id,
             },

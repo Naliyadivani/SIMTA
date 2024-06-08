@@ -210,7 +210,7 @@
                     <div class="col-12">
                         <div class="card-style">
                             <div class="card-foto">
-                                <img src="{{ asset('assets/profile/default.jpg') }}" alt="user avatar" id="img_ttd">
+                                <img src="" alt="user avatar" id="img_ttd">
                             </div>
                             <div class="input-type-file">
                                 <input type="file" id="ttd_foto" name="ttd_foto" accept="image/*" />
@@ -520,7 +520,7 @@
                         }).then((data) => {
                             location.reload();
                         })
-                    },            
+                    },
                     error: function (data) {
                         Swal.fire({
                             position:'center',
@@ -543,10 +543,33 @@
 <script>
     $(document).on("click", "[data-name='upload_ttd']", function(e) {
         var id = $(this).attr("data-item");
-        $("[data-name='id_upload_ttd']").val(id);
-        $("#modal_ttd").modal('show');
+        $.ajax({
+            type: "POST",
+            url: "{{ route('actshowusers') }}",
+            data: {id: id},
+            cache: false,
+            success: function(data) {
+                // console.log(data);
+                $("[data-name='id_upload_ttd']").val(data.id);
+                var show_foto = "{{ asset('assets/ttd') }}/" + data.ttd;
+                $('#img_ttd').attr('src', show_foto);
+                $("#modal_ttd").modal('show');
+            },
+            error: function(data) {
+                Swal.fire({
+                    position: 'center',
+                    title: 'Action Not Valid!',
+                    icon: 'warning',
+                    showConfirmButton: true,
+                    // timer: 1500
+                }).then((data) => {
+                    // location.reload();
+                })
+            }
+        });
+
     })
-    
+
     $(document).on("click", "[data-name='save_ttd']", function(e) {
         var id      = $("[data-name='id_upload_ttd']").val();
         var ttd     = $("[data-name='ttd_foto']").val();

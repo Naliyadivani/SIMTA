@@ -19,11 +19,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            <span>List Log Bimbingan</span>
-                            <div>
-                                <button type="button" class="btn btn-info" data-name="">Unduh PDF</button>
-                                <button type="button" class="btn btn-success" data-name="add">Buat LOG BIMBINGAN</button>
-                            </div>
+                            <span>List BA Seminar</span>
                         </div>
                     </div>
                     <div class="card-body">
@@ -32,7 +28,8 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>DOSEN PEMBIMBING</th>
+                                        <th>NAMA MAHASISWA</th>
+                                        <th>NIM</th>
                                         <th>TANGGAL BIMBINGAN</th>
                                         <th>CATATAN BIMBINGAN</th>
                                         <th>ACTION PLANT</th>
@@ -47,7 +44,8 @@
                                     @foreach ($arr as $key => $val)
                                         <tr>
                                             <td>{{$no++}}</td>
-                                            <td>{{$val->nik}} - {{$val->name}}</td>
+                                            <td>{{$val->name}}</td>
+                                            <td>{{$val->nik}}</td>
                                             <td>
                                                 {{\Carbon\Carbon::parse($val->tanggal)->isoFormat('dddd, DD MMM YYYY')}}
                                             </td>
@@ -55,7 +53,7 @@
                                             <td>{{$val->plant}}</td>
                                             <td>
                                                 @if ($val->status == 1)
-                                                    <button type="button" class="btn btn-outline-warning btn-sm">Sbmited</button>
+                                                    <button type="button" class="btn btn-outline-warning btn-sm">Waiting</button>
                                                 @elseif ($val->status == 2)
                                                     <button type="button" class="btn btn-outline-success btn-sm">Approved</button>
                                                 @elseif ($val->status == 3)
@@ -64,19 +62,16 @@
                                                         <i class="bi bi-exclamation-circle-fill"></i>
                                                     </span>
                                                 @else
-                                                    <button type="button" class="btn btn-outline-warning btn-sm">Sbmited</button>
+                                                    <button type="button" class="btn btn-outline-warning btn-sm">Waiting</button>
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($val->status == 1)
-                                                    <button type="button" class="btn btn-outline-danger" data-name="delete" data-item="{{$val->id}}">
-                                                        <i class='bx bxs-trash me-0'></i>
-                                                    </button>
-                                                @else
-                                                    <button type="button" class="btn btn-outline-danger" data-name="" data-item="" disabled>
-                                                        <i class='bx bxs-trash me-0'></i>
-                                                    </button>
-                                                @endif
+                                                <button type="button" class="btn btn-outline-danger" data-name="reject" data-item="{{$val->id}}">
+                                                    <i class="bi bi-x-circle"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-outline-success" data-name="approved" data-item="{{$val->id}}">
+                                                    <i class="bi bi-check2-all"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -90,41 +85,33 @@
     </section>
 </main>
 
-{{-- Modal Add --}}
-<div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- Modal Approved --}}
+<div class="modal fade" id="modal_approved" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">ADD Bimbingan</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Approved Bimbingan</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-12">
                         <div class="card-style">
-                            <div class="mb-3">
-                                <label for="" class="form-label">Dosen Pembimbing</label>
-                                <select data-name="id_dospem" class="form-select select-2-add">
-                                    <option value="">-- Select Dosen Pembimbing --</option>
-                                    @foreach ($dosen as $key => $value)
-                                        <option value="{{ $value->id }}">{{ $value->nik }} - {{ $value->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Tanggal Bimbingan</label>
-                                <input type="text" class="form-control" id="" placeholder="" data-name="tanggal">
+                                <input type="text" class="form-control" id="" placeholder="" data-name="tanggal" disabled>
                             </div>
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Catatan Bimbingan</label>
-                                <textarea name="" id="" cols="30"class="form-control" data-name="catatan"></textarea>
+                                <textarea name="" id="" cols="30"class="form-control" data-name="catatan" disabled></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Action Plant</label>
-                                <textarea name="" id="" cols="30"class="form-control" data-name="plant"></textarea>
+                                <textarea name="" id="" cols="30"class="form-control" data-name="catatan" disabled></textarea>
+                                <input type="hidden" data-name="id_approved">
                             </div>
 
                         </div>
@@ -133,12 +120,59 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-name="save_add">Save</button>
+                <button type="button" class="btn btn-success" data-name="save_approved">Approved</button>
             </div>
         </div>
     </div>
 </div>
-{{-- End Modal ADD --}}
+{{-- End Modal Approved --}}
+
+{{-- Modal Reject --}}
+<div class="modal fade" id="modal_reject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Reject Bimbingan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-style">
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">Tanggal Bimbingan</label>
+                                <input type="text" class="form-control" id="" placeholder="" data-name="tanggal" disabled>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">Catatan Bimbingan</label>
+                                <textarea name="" id="" cols="30"class="form-control" data-name="catatan" disabled></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">Action Plant</label>
+                                <textarea name="" id="" cols="30"class="form-control" data-name="catatan" disabled></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">Note</label>
+                                <textarea name="" id="" cols="30" class="form-control" data-name="note"></textarea>
+                                <input type="hidden" data-name="id_reject">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-name="save_reject">Reject</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal Reject --}}
 
 {{-- Modal Note Reject --}}
 <div class="modal fade" id="modal_note_reject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -170,24 +204,44 @@
 </div>
 {{-- End Modal Note Reject --}}
 
-{{-- JS ADD Data --}}
+{{-- JS Approved Data --}}
 <script>
-    $(document).on("click", "[data-name='add']", function(e) {
-        $("[data-name='id_dospem']").val('').trigger("change");
-        $("[data-name='tanggal']").val('');
-        $("[data-name='catatan']").val('');
-        $("[data-name='plant']").val('');
-        $("#modal_add").modal('show');
+    $(document).on("click", "[data-name='approved']", function(e) {
+        var id = $(this).attr("data-item");
+
+        $.ajax({
+            type: "POST",
+            url: "{{route('show_log_bimbingan_dosen')}}",
+            data: {
+                id: id,
+            },
+            cache: false,
+            success: function(data) {
+                // console.log(data);
+                $("[data-name='tanggal']").val(data['tanggal']);
+                $("[data-name='catatan']").val(data['catatan']);
+                $("[data-name='judul']").val(data['plant']);
+                $("[data-name='id_approved']").val(data['id']);
+                $("#modal_approved").modal('show');
+            },
+            error: function(data) {
+                Swal.fire({
+                    position: 'center',
+                    title: 'Action Not Valid!',
+                    icon: 'warning',
+                    showConfirmButton: true,
+                    // timer: 1500
+                }).then((data) => {
+                    // location.reload();
+                })
+            }
+        });
     });
 
-    $(document).on("click", "[data-name='save_add']", function(e) {
-        var id_mhs      = "{!! $idnusr->id !!}";
-        var id_dospem   = $("[data-name='id_dospem']").val();
-        var tanggal     = $("[data-name='tanggal']").val();
-        var catatan     = $("[data-name='catatan']").val();
-        var plant       = $("[data-name='plant']").val();
+    $(document).on("click", "[data-name='save_approved']", function(e) {
+        var id          = $("[data-name='id_approved']").val();
 
-        if (id_mhs === '' || id_dospem === '' || tanggal === '' || catatan === '' || plant === '') {
+        if (id === '') {
             Swal.fire({
                 position: 'center',
                 title: 'Form is empty!',
@@ -198,13 +252,9 @@
         } else {
             $.ajax({
                 type: "POST",
-                url: "{{route('add_log_bimbingan_mhs')}}",
+                url: "{{route('approved_log_bimbingan_dosen')}}",
                 data: {
-                    id_mhs: id_mhs,
-                    id_dospem: id_dospem,
-                    tanggal: tanggal,
-                    catatan: catatan,
-                    plant: plant
+                    id: id
                 },
                 cache: false,
                 success: function(response) {
@@ -234,57 +284,91 @@
         }
     });
 </script>
-{{-- End JS ADD Data --}}
+{{-- End JS Approved Data --}}
 
-{{-- JS Delete Data --}}
+{{-- JS Rject Data --}}
 <script>
-    $(document).on("click", "[data-name='delete']", function(e) {
+    $(document).on("click", "[data-name='reject']", function(e) {
         var id = $(this).attr("data-item");
 
-        Swal.fire({
-            title: 'Anda yakin?',
-            text: 'Aksi ini tidak dapat diulang!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, hapus data!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('delete_mhs_logbimbingan') }}",
-                    data: {id:id},
-                    cache: false,
-                    success: function(data) {
-                        Swal.fire({
-                            position:'center',
-                            title: 'Success!',
-                            icon: 'success',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then((data) => {
-                            location.reload();
-                        })
-                    },
-                    error: function (data) {
-                        Swal.fire({
-                            position:'center',
-                            title: 'Action Not Valid!',
-                            icon: 'warning',
-                            showConfirmButton: true,
-                            // timer: 1500
-                        }).then((data) => {
-                            // location.reload();
-                        })
-                    }
-                });
+        $.ajax({
+            type: "POST",
+            url: "{{route('show_log_bimbingan_dosen')}}",
+            data: {
+                id: id,
+            },
+            cache: false,
+            success: function(data) {
+                // console.log(data);
+                $("[data-name='tanggal']").val(data['tanggal']);
+                $("[data-name='catatan']").val(data['catatan']);
+                $("[data-name='judul']").val(data['plant']);
+                $("[data-name='id_reject']").val(data['id']);
+                $("#modal_reject").modal('show');
+            },
+            error: function(data) {
+                Swal.fire({
+                    position: 'center',
+                    title: 'Action Not Valid!',
+                    icon: 'warning',
+                    showConfirmButton: true,
+                    // timer: 1500
+                }).then((data) => {
+                    // location.reload();
+                })
             }
-        })
+        });
+    });
+
+    $(document).on("click", "[data-name='save_reject']", function(e) {
+        var id      = $("[data-name='id_reject']").val();
+        var note    = $("[data-name='note']").val();
+
+        if (id === '' || note === '') {
+            Swal.fire({
+                position: 'center',
+                title: 'Form is empty!',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 1000
+            })
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "{{route('reject_log_bimbingan_dosen')}}",
+                data: {
+                    id: id,
+                    note: note
+                },
+                cache: false,
+                success: function(response) {
+                    // console.log(response);
+                    Swal.fire({
+                        position: 'center',
+                        title: 'Success!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then((response) => {
+                        location.reload();
+                    })
+                },
+                error: function(response) {
+                    Swal.fire({
+                        position: 'center',
+                        title: 'Action Not Valid!',
+                        icon: 'warning',
+                        showConfirmButton: true,
+                        // timer: 1500
+                    }).then((response) => {
+                        // location.reload();
+                    })
+                }
+            });
+        }
     });
 </script>
-{{-- End JS Delete Data --}}
+{{-- End JS Rject Data --}}
 
 {{-- JS Note Reject --}}
 <script>
@@ -293,7 +377,7 @@
 
         $.ajax({
             type: "POST",
-            url: "{{route('show_log_bimbingan_mhs')}}",
+            url: "{{route('show_log_bimbingan_dosen')}}",
             data: {
                 id: id,
             },

@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\MahasiswaController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -19,44 +22,79 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['auth'],'role_id:1')->group(function () {
 
         // Kelola Akun Pengguna
-        Route::get('kadmin', [MainController::class, 'kadmin'])->name('kadmin');
-        Route::get('kdosen', [MainController::class, 'kdosen'])->name('kdosen');
-        Route::get('kmahasiswa', [MainController::class, 'kmahasiswa'])->name('kmahasiswa');
+        Route::get('kadmin', [AdminController::class, 'kadmin'])->name('kadmin');
+        Route::get('kdosen', [AdminController::class, 'kdosen'])->name('kdosen');
+        Route::get('kmahasiswa', [AdminController::class, 'kmahasiswa'])->name('kmahasiswa');
 
-        Route::post('add_users', [MainController::class, 'add_users'])->name('add_users');
-        Route::post('edit_users', [MainController::class, 'edit_users'])->name('edit_users');
-        Route::post('delete_users', [MainController::class, 'delete_users'])->name('delete_users');
-        Route::post('actshowusers', [MainController::class, 'actshowusers'])->name('actshowusers');
-        Route::post('actphoto', [MainController::class, 'actphoto'])->name('actphoto');
-        Route::post('upload_ttd', [MainController::class, 'upload_ttd'])->name('upload_ttd');
+        Route::post('add_users', [AdminController::class, 'add_users'])->name('add_users');
+        Route::post('edit_users', [AdminController::class, 'edit_users'])->name('edit_users');
+        Route::post('delete_users', [AdminController::class, 'delete_users'])->name('delete_users');
+        Route::post('actshowusers', [AdminController::class, 'actshowusers'])->name('actshowusers');
+        Route::post('actphoto', [AdminController::class, 'actphoto'])->name('actphoto');
+        Route::post('upload_ttd', [AdminController::class, 'upload_ttd'])->name('upload_ttd');
         // End Kelola Akun Pengguna
 
         // Kelola Dosen
-        Route::get('kpembimbing', [MainController::class, 'kpembimbing'])->name('kpembimbing');
+        Route::get('kpembimbing', [AdminController::class, 'kpembimbing'])->name('kpembimbing');
 
-        Route::post('add_setting_dosen', [MainController::class, 'add_setting_dosen'])->name('add_setting_dosen');
-        Route::post('edit_kelola_dospem', [MainController::class, 'edit_kelola_dospem'])->name('edit_kelola_dospem');
-        Route::post('actshowkeloladospem', [MainController::class, 'actshowkeloladospem'])->name('actshowkeloladospem');
+        Route::post('add_setting_dosen', [AdminController::class, 'add_setting_dosen'])->name('add_setting_dosen');
+        Route::post('edit_kelola_dospem', [AdminController::class, 'edit_kelola_dospem'])->name('edit_kelola_dospem');
+        Route::post('actshowkeloladospem', [AdminController::class, 'actshowkeloladospem'])->name('actshowkeloladospem');
         // End Kelola Dosen
     });
 
     Route::middleware(['auth'],'role_id:2')->group(function () {
 
         // Log Bimbingan
-        Route::get('admlogbimbingan', [MainController::class, 'admlogbimbingan'])->name('admlogbimbingan');
+        Route::get('dosenlogbimbingan', [DosenController::class, 'dosenlogbimbingan'])->name('dosenlogbimbingan');
+        Route::get('detail_log_bimbingan_dosen', [DosenController::class, 'detail_log_bimbingan_dosen'])->name('detail_log_bimbingan_dosen');
 
+        Route::post('show_log_bimbingan_dosen', [DosenController::class, 'show_log_bimbingan_dosen'])->name('show_log_bimbingan_dosen');
+        Route::post('approved_log_bimbingan_dosen', [DosenController::class, 'approved_log_bimbingan_dosen'])->name('approved_log_bimbingan_dosen');
+        Route::post('reject_log_bimbingan_dosen', [DosenController::class, 'reject_log_bimbingan_dosen'])->name('reject_log_bimbingan_dosen');
         // En Log Bimbingan
+
+        // BA Seminar
+        Route::get('ba_seminardosen', [DosenController::class, 'ba_seminardosen'])->name('ba_seminardosen');
+
+        Route::post('show_ba_seminar_dosen', [DosenController::class, 'show_ba_seminar_dosen'])->name('show_ba_seminar_dosen');
+        Route::post('approved_ba_seminar_dosen', [DosenController::class, 'approved_ba_seminar_dosen'])->name('approved_ba_seminar_dosen');
+        Route::post('reject_ba_seminar_dosen', [DosenController::class, 'reject_ba_seminar_dosen'])->name('reject_ba_seminar_dosen');
+        // BA Seminar
+
+        // BA SIdang
+        Route::get('ba_sidangdosen', [DosenController::class, 'ba_sidangdosen'])->name('ba_sidangdosen');
+
+        Route::post('show_setting_dospem_dosen', [DosenController::class, 'show_setting_dospem_dosen'])->name('show_setting_dospem_dosen');
+        Route::post('add_ba_sidang_ta_dosen', [DosenController::class, 'add_ba_sidang_ta_dosen'])->name('add_ba_sidang_ta_dosen');
+        Route::post('show_ba_sidang_dosen', [DosenController::class, 'show_ba_sidang_dosen'])->name('show_ba_sidang_dosen');
+        // End BA Sidang
 
     });
 
     Route::middleware(['auth'],'role_id:3')->group(function () {
 
         // Log Bimbingan
-        Route::get('mhslogbimbingan', [MainController::class, 'mhslogbimbingan'])->name('mhslogbimbingan');
+        Route::get('mhslogbimbingan', [MahasiswaController::class, 'mhslogbimbingan'])->name('mhslogbimbingan');
 
-        Route::post('add_log_bimbingan_mhs', [MainController::class, 'add_log_bimbingan_mhs'])->name('add_log_bimbingan_mhs');
-
+        Route::post('add_log_bimbingan_mhs', [MahasiswaController::class, 'add_log_bimbingan_mhs'])->name('add_log_bimbingan_mhs');
+        Route::post('delete_mhs_logbimbingan', [MahasiswaController::class, 'delete_mhs_logbimbingan'])->name('delete_mhs_logbimbingan');
+        Route::post('show_log_bimbingan_mhs', [MahasiswaController::class, 'show_log_bimbingan_mhs'])->name('show_log_bimbingan_mhs');
         // En Log Bimbingan
 
+        // BA Seminar
+        Route::get('mhsbaseminar', [MahasiswaController::class, 'mhsbaseminar'])->name('mhsbaseminar');
+
+        Route::post('add_ba_seminar_mhs', [MahasiswaController::class, 'add_ba_seminar_mhs'])->name('add_ba_seminar_mhs');
+        Route::post('delete_mhs_ba_seminar', [MahasiswaController::class, 'delete_mhs_ba_seminar'])->name('delete_mhs_ba_seminar');
+        Route::post('show_ba_seminar_mhs', [MahasiswaController::class, 'show_ba_seminar_mhs'])->name('show_ba_seminar_mhs');
+        // End BA Seminar
+
+        // BA Sidang TA
+        Route::get('ba_sidangmhs', [MahasiswaController::class, 'ba_sidangmhs'])->name('ba_sidangmhs');
+
+        Route::post('show_setting_dospem_mhs', [MahasiswaController::class, 'show_setting_dospem_mhs'])->name('show_setting_dospem_mhs');
+        Route::post('show_ba_sidang_mhs', [MahasiswaController::class, 'show_ba_sidang_mhs'])->name('show_ba_sidang_mhs');
+        //End BA SIdang TA
     });
 });

@@ -56,7 +56,15 @@ class AuthController extends Controller
         Auth::attempt($data);
 
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
-            return redirect()->route('dasbor');
+            if(auth::user()->role_id == 1){
+                return redirect()->route('kadmin');
+            }elseif(auth::user()->role_id == 2){
+                return redirect()->route('dosenlogbimbingan');
+            }elseif(auth::user()->role_id == 3){
+                return redirect()->route('mhslogbimbingan');
+            }else{
+                return redirect()->route('dasbor');
+            }
         } else {
             //Login Fail
             Session::flash('error', 'nik atau Password salah');
