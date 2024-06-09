@@ -154,10 +154,12 @@ class DosenController extends Controller
                         ->leftJoin('users AS b', 'b.id', '=', 'trx_ba_sidang.id_mhs')
                         ->where('trx_ba_sidang.id_dospem', $id_dospem)
                         ->where('trx_ba_sidang.is_active', 1)->get();
-        $ckmhs      = DB::table('trx_setting_bimbingan')->where('id_dospem_1', auth::user()->id)->where('is_active', 1)->get();
+        $ckmhs      = DB::table('trx_setting_bimbingan')->where('is_active', 1)->get();
         $lismhs     = [];
         foreach($ckmhs as $key => $val){
-            $lismhs[$key]   = $val->id_mhs;
+            if($id_dospem == $val->id_dospem_1 || $id_dospem == $val->id_dospem_2){
+                $lismhs[$key]   = $val->id_mhs;
+            }
         }
         $mhs        = DB::table('users')->whereIn('id', $lismhs)->where('is_active', 1)->get();
         $dosen      = DB::table('users')->where('role_id', 2)->where('is_active', 1)->get();
@@ -206,5 +208,108 @@ class DosenController extends Controller
         return response()->json($data);
     }
     // End BA Sidang
+
+    // RB Bimbingan
+    function rb_bimbingandosen(): object {
+        $id_dospem  = auth::user()->id;
+        $ckmhs      = DB::table('trx_setting_bimbingan')->where('is_active', 1)->get();
+        $lismhs     = [];
+        foreach($ckmhs as $key => $val){
+            if($id_dospem == $val->id_dospem_1 || $id_dospem == $val->id_dospem_2){
+                $lismhs[$key]   = $val->id_mhs;
+            }
+        }
+        $arr        = DB::table('users')->whereIn('id', $lismhs)->where('is_active', 1)->get();
+
+        $data = array(
+            'idnusr'    => $this->idnusr(),
+            'title'     => 'Rubrik Penilaian Mahasiswa Bimbingan',
+            'arr'       => $arr,
+            'id_dospem' => $id_dospem
+        );
+
+        return view('Dosen.rb_bimbingan')->with($data);
+    }
+
+    function add_nilai_rb_sidang_dosen(Request $request): object {
+        $id_dospem  = auth::user()->id;
+
+        $data   = array(
+            'id_dospem' => $id_dospem,
+            'id_mhs' => $request['id_mhs'],
+            'judul' => $request['judul'],
+            'nilai_sp1_1' => $request['nilai_sp1_1'],
+            'nilai_sp1_2' => $request['nilai_sp1_2'],
+            'nilai_sp1_3' => $request['nilai_sp1_3'],
+            'nilai_sp1_4' => $request['nilai_sp1_4'],
+            'nilai_sp1_5' => $request['nilai_sp1_5'],
+            'nilai_sp1_6' => $request['nilai_sp1_6'],
+            'nilai_sp2_1' => $request['nilai_sp2_1'],
+            'nilai_sp2_2' => $request['nilai_sp2_2'],
+            'nilai_sp2_3' => $request['nilai_sp2_3'],
+            'is_active' => 1
+        );
+        $log        = DB::table('trx_rb_bimbingan')->insert([$data]);
+        return response('success');
+    }
+
+    function show_nilai_rb_sidang_dosen(Request $request): object {
+        $id_mhs     = $request['id_mhs'];
+        $id_dospem  = auth::user()->id;
+        $data       = DB::table('trx_rb_bimbingan')->where('id_mhs', $id_mhs)->where('id_dospem', $id_dospem)->first();
+        return response()->json($data);
+    }
+
+    // End RB Bimbingan
+
+    // RB Bimbingan
+    function rb_ujiandosen(): object {
+        $id_dospem  = auth::user()->id;
+        $ckmhs      = DB::table('trx_setting_bimbingan')->where('is_active', 1)->get();
+        $lismhs     = [];
+        foreach($ckmhs as $key => $val){
+            if($id_dospem == $val->id_dospej_1 || $id_dospem == $val->id_dospej_2 || $id_dospem == $val->id_dospej_3){
+                $lismhs[$key]   = $val->id_mhs;
+            }
+        }
+        $arr        = DB::table('users')->whereIn('id', $lismhs)->where('is_active', 1)->get();
+
+        $data = array(
+            'idnusr'    => $this->idnusr(),
+            'title'     => 'Rubrik Penilaian Mahasiswa Ujian',
+            'arr'       => $arr,
+            'id_dospem' => $id_dospem
+        );
+
+        return view('Dosen.rb_ujian')->with($data);
+    }
+
+    function add_nilai_rb_uji_dosen(Request $request): object {
+        $id_dospem  = auth::user()->id;
+
+        $data   = array(
+            'id_dospem' => $id_dospem,
+            'id_mhs' => $request['id_mhs'],
+            'judul' => $request['judul'],
+            'nilai_sp1_1' => $request['nilai_sp1_1'],
+            'nilai_sp1_2' => $request['nilai_sp1_2'],
+            'nilai_sp1_3' => $request['nilai_sp1_3'],
+            'nilai_sp1_4' => $request['nilai_sp1_4'],
+            'nilai_sp1_5' => $request['nilai_sp1_5'],
+            'nilai_sp1_6' => $request['nilai_sp1_6'],
+            'is_active' => 1
+        );
+        $log        = DB::table('trx_rb_ujian')->insert([$data]);
+        return response('success');
+    }
+
+    function show_nilai_rb_uji_dosen(Request $request): object {
+        $id_mhs     = $request['id_mhs'];
+        $id_dospem  = auth::user()->id;
+        $data       = DB::table('trx_rb_ujian')->where('id_mhs', $id_mhs)->where('id_dospem', $id_dospem)->first();
+        return response()->json($data);
+    }
+
+    // End RB Bimbingan
 
 }

@@ -82,8 +82,20 @@
                 </a>
             </li>
 
+            @php
+                $menu    = ['rb_penilaian'];
+            @endphp
+            @if(in_array(Route::currentRouteName() , $menu))
+                @php
+                    $menu_active = '';
+                @endphp
+            @else
+                @php
+                    $menu_active = 'collapsed';
+                @endphp
+            @endif
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link {{$menu_active}}" href="{{route('rb_penilaian')}}">
                     <i class="bi bi-grid"></i>
                     <span>Rubrik Penilaian</span>
                 </a>
@@ -145,20 +157,34 @@
                 </ul>
             </li>
 
+            @php
+                $menu    = ['rb_bimbingandosen','rb_ujiandosen'];
+            @endphp
+            @if(in_array(Route::currentRouteName() , $menu))
+                @php
+                    $menu_active    = '';
+                    $menu_show      = 'show';
+                @endphp
+            @else
+                @php
+                    $menu_active    = 'collapsed';
+                    $menu_show      = '';
+                @endphp
+            @endif
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#rubrik-penilaian-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link {{$menu_active}}" data-bs-target="#rubrik-penilaian-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-people-fill"></i><span>Rubrik Penilaian</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="rubrik-penilaian-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="rubrik-penilaian-nav" class="nav-content collapse {{$menu_show}}" data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="">
-                            <i class="bi bi-circle"></i><span>Nilai Bimbingan</span>
+                        <a href="{{route('rb_bimbingandosen')}}" class="@if(Route::currentRouteName() == 'rb_bimbingandosen') active @endif">
+                            <i class="bi bi-circle"></i><span>Mahasiswa Bimbingan</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="">
-                            <i class="bi bi-circle"></i><span>Nilai Sidang TA</span>
+                        <a href="{{route('rb_ujiandosen')}}" class="@if(Route::currentRouteName() == 'rb_ujiandosen') active @endif">
+                            <i class="bi bi-circle"></i><span>Mahasiswa Uji</span>
                         </a>
                     </li>
                 </ul>

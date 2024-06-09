@@ -200,4 +200,102 @@ class AdminController extends Controller
     }
     // End Kelola Pengguna
 
+    // Kelola Dosen
+    function kpembimbing(): object {
+        $arr        = Admin::getdatasettingpembimbing();
+        $mhs        = DB::table('users')->where('role_id', 3)->where('is_active', 1)->get();
+        $dosen      = DB::table('users')->where('role_id', 2)->where('is_active', 1)->get();
+
+        $data = array(
+            'idnusr'    => $this->idnusr(),
+            'title'     => 'Kelola Dosen',
+            'arr'       => $arr,
+            'mhs'       => $mhs,
+            'dosen'     => $dosen
+        );
+
+        return view('Admin.k_pembimbing')->with($data);
+    }
+
+    function add_setting_dosen(Request $request): object {
+
+        $dt         = $request['data'];
+        $update_by  = auth::user()->id;
+
+        $data   = array(
+            'id_mhs'        => $dt['id_mhs'],
+            'id_dospem_1'   => $dt['id_dospem_1'],
+            'id_dospem_2'   => $dt['id_dospem_2'],
+            'id_dospej_1'   => $dt['id_dospej_1'],
+            'id_dospej_2'   => $dt['id_dospej_2'],
+            'id_dospej_3'   => $dt['id_dospej_3'],
+            'is_active'     => 1,
+            'update_by'     => $update_by,
+        );
+
+        $cek      = DB::table('trx_setting_bimbingan')->where('id_mhs', $dt['id_mhs'])->where('is_active', 1)->get();
+
+        if(count($cek) <= 0){
+            DB::table('trx_setting_bimbingan')->insert([$data]);
+            return response('success');
+        }else{
+            return response('error');
+        }
+
+    }
+
+    function actshowkeloladospem(Request $request): object {
+        $id         = $request['id'];
+        $data       = DB::table('trx_setting_bimbingan')->where('id', $id)->first();
+        return response()->json($data);
+    }
+
+    function edit_kelola_dospem(Request $request): object {
+        $dt         = $request['data'];
+        $update_by  = auth::user()->id;
+
+        $data   = array(
+            'id_mhs' => $dt['id_mhs'],
+            'id_dospem_1' => $dt['id_dospem_1'],
+            'id_dospem_2' => $dt['id_dospem_2'],
+            'id_dospej_1' => $dt['id_dospej_1'],
+            'id_dospej_2' => $dt['id_dospej_2'],
+            'id_dospej_3' => $dt['id_dospej_3'],
+            'update_by' => $update_by,
+        );
+        DB::table('trx_setting_bimbingan')->where('id', $dt['id'])->update($data);
+        return response('success');
+    }
+
+    // End Kelola Dosen
+
+    // Rubrik Penilaianm
+    function rb_penilaian(): object {
+        $arr        = Admin::getdatarubrikpenilaian();
+        $mhs        = DB::table('users')->where('role_id', 3)->where('is_active', 1)->get();
+        $dosen      = DB::table('users')->where('role_id', 2)->where('is_active', 1)->get();
+
+        $data = array(
+            'idnusr'    => $this->idnusr(),
+            'title'     => 'Rubrik Penilaian',
+            'arr'       => $arr,
+            'mhs'       => $mhs,
+            'dosen'     => $dosen
+        );
+
+        return view('Admin.rb_penilaian')->with($data);
+    }
+    // End Rubrik Penilaian
+
+    function admtes()
+    {
+        $reqbooking  = '["2024-04-27"]';
+        $kategori  = 1;
+        $date_start  = '2024-04-27 20:00:00';
+        $date_end  = '2024-04-27 23:00:00';
+        $arr = Admin::getdatarubrikpenilaian();
+        echo '<pre>';
+        print_r($arr);
+        exit;
+    }
 }

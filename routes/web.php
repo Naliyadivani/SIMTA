@@ -41,6 +41,13 @@ Route::middleware(['auth'])->group(function () {
         Route::post('edit_kelola_dospem', [AdminController::class, 'edit_kelola_dospem'])->name('edit_kelola_dospem');
         Route::post('actshowkeloladospem', [AdminController::class, 'actshowkeloladospem'])->name('actshowkeloladospem');
         // End Kelola Dosen
+
+        // Rubrik penilaian
+        Route::get('rb_penilaian', [AdminController::class, 'rb_penilaian'])->name('rb_penilaian');
+
+        // End Rubrik Penilaian
+
+        Route::get('admtes', [AdminController::class, 'admtes'])->name('admtes');
     });
 
     Route::middleware(['auth'],'role_id:2')->group(function () {
@@ -69,6 +76,20 @@ Route::middleware(['auth'])->group(function () {
         Route::post('add_ba_sidang_ta_dosen', [DosenController::class, 'add_ba_sidang_ta_dosen'])->name('add_ba_sidang_ta_dosen');
         Route::post('show_ba_sidang_dosen', [DosenController::class, 'show_ba_sidang_dosen'])->name('show_ba_sidang_dosen');
         // End BA Sidang
+
+        // RB Bimbingan
+        Route::get('rb_bimbingandosen', [DosenController::class, 'rb_bimbingandosen'])->name('rb_bimbingandosen');
+
+        Route::post('add_nilai_rb_sidang_dosen', [DosenController::class, 'add_nilai_rb_sidang_dosen'])->name('add_nilai_rb_sidang_dosen');
+        Route::post('show_nilai_rb_sidang_dosen', [DosenController::class, 'show_nilai_rb_sidang_dosen'])->name('show_nilai_rb_sidang_dosen');
+        // End RB Bimbingan
+
+        // RB Ujian
+        Route::get('rb_ujiandosen', [DosenController::class, 'rb_ujiandosen'])->name('rb_ujiandosen');
+
+        Route::post('add_nilai_rb_uji_dosen', [DosenController::class, 'add_nilai_rb_uji_dosen'])->name('add_nilai_rb_uji_dosen');
+        Route::post('show_nilai_rb_uji_dosen', [DosenController::class, 'show_nilai_rb_uji_dosen'])->name('show_nilai_rb_uji_dosen');
+        // End RB Ujian
 
     });
 
