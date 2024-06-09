@@ -168,33 +168,56 @@ CREATE TABLE `sessions` (
 /*Data for the table `sessions` */
 
 insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values 
-('6xrN1y7OBYtAkaSu51SQ9VwzvpbxwfO9kpF5R8Bn',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoicjRXZG1kaGhaN1hYSTVrMlZqWk1jTkU2UjQ1UFFkRDJ4VXVnbTRwRSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjU6Imh0dHBzOi8vc2ltdGEua2dkci9rZG9zZW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1717632865),
-('HuP8mDezQxP5JYxtz5IzZT7khyOOIx8nPVtMDyxQ',3,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiV2lScFdsZjUzekRoTWJMdFVMVVZUVUVVRWFuNUM3cTFvZFFzdU1NSCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNDoiaHR0cHM6Ly9zaW10YS5rZ2RyL21oc2xvZ2JpbWJpbmdhbiI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM0OiJodHRwczovL3NpbXRhLmtnZHIvbWhzbG9nYmltYmluZ2FuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mzt9',1717632810),
-('mKLfRBSnTF24Cw6jBUGHJaQ4461T9wqi8U2SVp9C',5,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVTBqSVRERXNydkZDSjA0ekhDUkFLZGlyVFdhNlRzY2RwZ09GVndNdiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHBzOi8vc2ltdGEua2dkci9hZG1sb2diaW1iaW5nYW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo1O30=',1717638503);
+('aYErtQhEIq8dowbKNiMSLt3ftz7WkpqY3ylLIFp4',5,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiY3psTGppdGxUaXRxcEs5TWhNb0Nmd3dhZlduaVBiRk5CR2ZkbGhsQyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNjoiaHR0cHM6Ly9zaW10YS5rZ2RyL3JiX2JpbWJpbmdhbmRvc2VuIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHBzOi8vc2ltdGEua2dkci9yYl91amlhbmRvc2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NTt9',1717896133),
+('giV53rbVnGt6oMKqjSrROSKAVnAxh8NODclTztkQ',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZ2hHaGtkZWxrVThnV1Q0eXZzZFVqV2JHUnhQR0pJMXdmVWhSZU5aYyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHBzOi8vc2ltdGEua2dkci9yYl9wZW5pbGFpYW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1717903229),
+('LNvcveBOuvjg5l29OWl7g28pKdZTBWCz49kqnWwJ',6,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiakRxanBNa3dLd0RLZmd0RjlSQ2RQNXprVEVHbGJtZXZ3RTVnQjFXcyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHBzOi8vc2ltdGEua2dkci9yYl91amlhbmRvc2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Njt9',1717897151);
 
-/*Table structure for table `trx_detail_log_bimbingan` */
+/*Table structure for table `trx_ba_seminar` */
 
-DROP TABLE IF EXISTS `trx_detail_log_bimbingan`;
+DROP TABLE IF EXISTS `trx_ba_seminar`;
 
-CREATE TABLE `trx_detail_log_bimbingan` (
+CREATE TABLE `trx_ba_seminar` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_log` int(11) DEFAULT NULL,
+  `id_mhs` int(11) DEFAULT NULL,
   `id_dospem` int(11) DEFAULT NULL,
-  `posisi` varchar(255) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `judul` text DEFAULT NULL,
   `catatan` text DEFAULT NULL,
-  `plant` text DEFAULT NULL,
+  `note` text DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `is_active` int(11) DEFAULT NULL,
   `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `update_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-/*Data for the table `trx_detail_log_bimbingan` */
+/*Data for the table `trx_ba_seminar` */
 
-insert  into `trx_detail_log_bimbingan`(`id`,`id_log`,`id_dospem`,`posisi`,`catatan`,`plant`,`status`,`is_active`,`last_update`,`update_by`) values 
-(1,1,5,'Pembimbing 1','asdasdas','asdasdas',1,1,'2024-06-06 06:24:36',NULL),
-(2,1,6,'Penguji 1','asdasdsa','asdasdas',1,1,'2024-06-06 06:24:36',NULL);
+insert  into `trx_ba_seminar`(`id`,`id_mhs`,`id_dospem`,`tanggal`,`judul`,`catatan`,`note`,`status`,`is_active`,`last_update`) values 
+(1,3,5,'2024-06-15','Tes Seminar 1','Tes Seminar 1',NULL,1,1,'2024-06-08 00:07:57'),
+(2,3,5,'2024-06-14','Tes Seminar 2 tes','Tes Seminar 2 tes',NULL,2,1,'2024-06-08 00:29:53'),
+(3,3,5,'2024-06-10','Tes Seminar 3','Tes Seminar 3','Reject Daya',3,1,'2024-06-08 00:45:25');
+
+/*Table structure for table `trx_ba_sidang` */
+
+DROP TABLE IF EXISTS `trx_ba_sidang`;
+
+CREATE TABLE `trx_ba_sidang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_mhs` int(11) DEFAULT NULL,
+  `id_dospem` int(11) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `judul` text DEFAULT NULL,
+  `catatan` text DEFAULT NULL,
+  `hasil` text DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `trx_ba_sidang` */
+
+insert  into `trx_ba_sidang`(`id`,`id_mhs`,`id_dospem`,`tanggal`,`judul`,`catatan`,`hasil`,`is_active`,`last_update`) values 
+(1,3,5,'2024-06-07','Tes 1 Judul TA','Aduh ko Gitu','LULUS DENGAN PERBAIKAN',1,'2024-06-08 10:48:52');
 
 /*Table structure for table `trx_log_bimbingan` */
 
@@ -203,19 +226,76 @@ DROP TABLE IF EXISTS `trx_log_bimbingan`;
 CREATE TABLE `trx_log_bimbingan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_mhs` int(11) DEFAULT NULL,
-  `tema` text DEFAULT NULL,
+  `id_dospem` int(11) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
   `catatan` text DEFAULT NULL,
   `plant` text DEFAULT NULL,
-  `tanggal` date DEFAULT NULL,
+  `note` text DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `trx_log_bimbingan` */
+
+insert  into `trx_log_bimbingan`(`id`,`id_mhs`,`id_dospem`,`tanggal`,`catatan`,`plant`,`note`,`status`,`is_active`,`last_update`) values 
+(1,3,5,'2024-06-06','Tes 1','Tes 1',NULL,1,1,'2024-06-07 17:57:09'),
+(2,3,5,'2024-06-07','Tes 2','Tes 2',NULL,2,1,'2024-06-08 09:19:34'),
+(3,3,5,'2024-06-08','Tes 3','Tes 3','Reject data',3,1,'2024-06-08 09:22:43');
+
+/*Table structure for table `trx_rb_bimbingan` */
+
+DROP TABLE IF EXISTS `trx_rb_bimbingan`;
+
+CREATE TABLE `trx_rb_bimbingan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_mhs` int(11) DEFAULT NULL,
+  `id_dospem` int(11) DEFAULT NULL,
+  `judul` text DEFAULT NULL,
+  `nilai_sp1_1` int(11) DEFAULT NULL,
+  `nilai_sp1_2` int(11) DEFAULT NULL,
+  `nilai_sp1_3` int(11) DEFAULT NULL,
+  `nilai_sp1_4` int(11) DEFAULT NULL,
+  `nilai_sp1_5` int(11) DEFAULT NULL,
+  `nilai_sp1_6` int(11) DEFAULT NULL,
+  `nilai_sp2_1` int(11) DEFAULT NULL,
+  `nilai_sp2_2` int(11) DEFAULT NULL,
+  `nilai_sp2_3` int(11) DEFAULT NULL,
   `is_active` int(11) DEFAULT NULL,
   `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-/*Data for the table `trx_log_bimbingan` */
+/*Data for the table `trx_rb_bimbingan` */
 
-insert  into `trx_log_bimbingan`(`id`,`id_mhs`,`tema`,`catatan`,`plant`,`tanggal`,`is_active`,`last_update`) values 
-(1,3,'asdasdasd',NULL,NULL,'2024-06-12',1,'2024-06-06 06:24:36');
+insert  into `trx_rb_bimbingan`(`id`,`id_mhs`,`id_dospem`,`judul`,`nilai_sp1_1`,`nilai_sp1_2`,`nilai_sp1_3`,`nilai_sp1_4`,`nilai_sp1_5`,`nilai_sp1_6`,`nilai_sp2_1`,`nilai_sp2_2`,`nilai_sp2_3`,`is_active`,`last_update`) values 
+(1,3,5,'Tes 1 Judul TA',89,89,89,89,89,89,60,60,90,1,'2024-06-08 22:39:49');
+
+/*Table structure for table `trx_rb_ujian` */
+
+DROP TABLE IF EXISTS `trx_rb_ujian`;
+
+CREATE TABLE `trx_rb_ujian` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_mhs` int(11) DEFAULT NULL,
+  `id_dospem` int(11) DEFAULT NULL,
+  `judul` text DEFAULT NULL,
+  `nilai_sp1_1` int(11) DEFAULT NULL,
+  `nilai_sp1_2` int(11) DEFAULT NULL,
+  `nilai_sp1_3` int(11) DEFAULT NULL,
+  `nilai_sp1_4` int(11) DEFAULT NULL,
+  `nilai_sp1_5` int(11) DEFAULT NULL,
+  `nilai_sp1_6` int(11) DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `trx_rb_ujian` */
+
+insert  into `trx_rb_ujian`(`id`,`id_mhs`,`id_dospem`,`judul`,`nilai_sp1_1`,`nilai_sp1_2`,`nilai_sp1_3`,`nilai_sp1_4`,`nilai_sp1_5`,`nilai_sp1_6`,`is_active`,`last_update`) values 
+(1,3,6,'Tes 1 Judul TA',70,80,80,70,80,80,1,'2024-06-09 08:37:41');
 
 /*Table structure for table `trx_setting_bimbingan` */
 
@@ -273,7 +353,7 @@ insert  into `users`(`id`,`role_id`,`nik`,`name`,`no_tlp`,`email`,`email_verifie
 (2,1,'010101','Kang Dru1','0812111599621','te1s@name.com','2024-06-02 12:11:14','$2y$12$GQrKVfls/v2TZSd2fDIS3Oi2oCoGfGRO/K.Ln5iRYqHM1v3I.5hsW','1231','74119.png','-',NULL,'2024-06-02 12:11:14','2024-06-02 12:11:14',1,1),
 (3,3,'123456','MHS 1','087765443255','mhs1@gmail.com',NULL,'$2y$12$n8Ln9IzZ6PC9NfVKb30/A.TVd.q6/IDBIpj2DmfpBEsqHrZOf/bq6','123','default.jpg','-',NULL,NULL,NULL,1,1),
 (4,3,'105220001','MHS 2','082222555225552','mhs2@gmail.com',NULL,'$2y$12$TUFLEf/16qAFh7FylEdLqOpZX2wADE4HF5Ogq7v585ivazM47NqQW','123','default.jpg','-',NULL,NULL,NULL,1,1),
-(5,2,'105201','DOSEN 1','089976654321','dosen1@gmail.com','2024-06-02 13:21:19','$2y$12$HaxtXQJJ9Rijj7ehKWi2tugnGKNXYX32wdYyWApzt9g0rbRXtGM0G','123','default.jpg','52739.png',NULL,'2024-06-02 13:21:19','2024-06-02 13:21:19',1,1),
+(5,2,'105201','DOSEN 1','089976654321','dosen1@gmail.com','2024-06-08 09:42:31','$2y$12$HaxtXQJJ9Rijj7ehKWi2tugnGKNXYX32wdYyWApzt9g0rbRXtGM0G','123','default.jpg','53409.jpeg',NULL,'2024-06-08 09:42:31','2024-06-08 09:42:31',1,1),
 (6,2,'105202','DOSEN2','08997765432','dosen2@gmail.com',NULL,'$2y$12$aq84d6VwlVUI6pYua44QSOX2fBDSwVcEYpcI3wLswm39EKCflM2A6','123','default.jpg','-',NULL,NULL,NULL,1,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
