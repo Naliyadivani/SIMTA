@@ -100,6 +100,9 @@
                                                 <button type="button" class="btn btn-outline-info" data-name="show" data-item="{{$val->id}}">
                                                     <i class="bi bi-eye-fill"></i>
                                                 </button>
+                                                <button type="button" class="btn btn-outline-success" data-name="unduh" data-item="{{$val->id}}">
+                                                    <i class="bi bi-filetype-pdf"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach

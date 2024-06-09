@@ -30,8 +30,12 @@ class Admin extends Model
                 $arr[$key]['name_dospem2']  = $arr_dospem_2->nik.' - '.$arr_dospem_2->name;
             }
 
-            $arr_dospej_1           = collect(\DB::select("SELECT * FROM users WHERE id='$val->id_dospej_1'"))->first();
-            $arr[$key]['name_dospej1']  = $arr_dospej_1->nik.' - '.$arr_dospej_1->name;
+            if($val->id_dospej_1 == null){
+                $arr[$key]['name_dospej1']  = '-';
+            }else{
+                $arr_dospej_1           = collect(\DB::select("SELECT * FROM users WHERE id='$val->id_dospej_1'"))->first();
+                $arr[$key]['name_dospej1']  = $arr_dospej_1->nik.' - '.$arr_dospej_1->name;
+            }
 
             if($val->id_dospej_2 == null){
                 $arr[$key]['name_dospej2']  = '-';
@@ -73,8 +77,12 @@ class Admin extends Model
                 $dt[$key]['name_dospem2']  = $arr_dospem_2->nik.' - '.$arr_dospem_2->name;
             }
 
-            $arr_dospej_1           = collect(\DB::select("SELECT * FROM users WHERE id='$val->id_dospej_1'"))->first();
-            $dt[$key]['name_dospej1']  = $arr_dospej_1->nik.' - '.$arr_dospej_1->name;
+            if($val->id_dospej_1 == null){
+                $dt[$key]['name_dospej1']  = '-';
+            }else{
+                $arr_dospej_1           = collect(\DB::select("SELECT * FROM users WHERE id='$val->id_dospej_1'"))->first();
+                $dt[$key]['name_dospej1']  = $arr_dospej_1->nik.' - '.$arr_dospej_1->name;
+            }
 
             if($val->id_dospej_2 == null){
                 $dt[$key]['name_dospej2']  = '-';

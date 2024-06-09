@@ -34,7 +34,7 @@
                                         <th>NO TLP</th>
                                         <th>EMAIL</th>
                                         <th>PASSWORD</th>
-                                        <th>TTD</th>
+                                        {{-- <th>TTD</th> --}}
                                         <th class="text-center">ACTION</th>
                                     </tr>
                                 </thead>
@@ -50,17 +50,17 @@
                                             <td>{{$val->no_tlp}}</td>
                                             <td>{{$val->email}}</td>
                                             <td>*** *** ***</td>
-                                            <td>
+                                            {{-- <td>
                                                 @if($val->ttd == '-')
                                                     <span class="badge bg-danger">Belum Upload</span>
                                                 @else
                                                     <span class="badge bg-success">Sudah Upload</span>
                                                 @endif
-                                            </td>
+                                            </td> --}}
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-outline-primary" data-name="upload_ttd" data-item="{{$val->id}}">
+                                                {{-- <button type="button" class="btn btn-outline-primary" data-name="upload_ttd" data-item="{{$val->id}}">
                                                     <i class="bi bi-upload me-0"></i>
-                                                </button>
+                                                </button> --}}
 
                                                 <button type="button" class="btn btn-outline-info" data-name="edit" data-item="{{$val->id}}">
                                                     <i class='bx bx-edit me-0'></i>

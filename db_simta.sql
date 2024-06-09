@@ -168,9 +168,19 @@ CREATE TABLE `sessions` (
 /*Data for the table `sessions` */
 
 insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values 
-('aYErtQhEIq8dowbKNiMSLt3ftz7WkpqY3ylLIFp4',5,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiY3psTGppdGxUaXRxcEs5TWhNb0Nmd3dhZlduaVBiRk5CR2ZkbGhsQyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNjoiaHR0cHM6Ly9zaW10YS5rZ2RyL3JiX2JpbWJpbmdhbmRvc2VuIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHBzOi8vc2ltdGEua2dkci9yYl91amlhbmRvc2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NTt9',1717896133),
-('giV53rbVnGt6oMKqjSrROSKAVnAxh8NODclTztkQ',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZ2hHaGtkZWxrVThnV1Q0eXZzZFVqV2JHUnhQR0pJMXdmVWhSZU5aYyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHBzOi8vc2ltdGEua2dkci9yYl9wZW5pbGFpYW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1717903229),
-('LNvcveBOuvjg5l29OWl7g28pKdZTBWCz49kqnWwJ',6,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiakRxanBNa3dLd0RLZmd0RjlSQ2RQNXprVEVHbGJtZXZ3RTVnQjFXcyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHBzOi8vc2ltdGEua2dkci9yYl91amlhbmRvc2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Njt9',1717897151);
+('266Vfr4Q8eRvATkyEXceNAPDXp9iovDmGeNFMLHw',3,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNU5sZkFKNzBEZHpKaERDUTVLOFRFd091SUJnQTN0OVk0bVluTGhjSiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHBzOi8vc2ltdGEua2dkci9iYV9zaWRhbmdtaHMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=',1717939347),
+('bReS27tyqC4EIuCxsACy6kiYnBqNkpyLzCILdz5f',3,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiOEI1ZEhkaGRCckRzNTByZnJiTzJzSnJTOG1jeHVKSDNzV1h2dDN6UCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHBzOi8vc2ltdGEua2dkci9taHNsb2diaW1iaW5nYW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=',1717940357),
+('d3dZ4BQyyU78putIz62B9PJxiAtEWxUPUp5ODy9L',3,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWHZOUEVPNElZMTJ6WGVraFpuaFhyc3hWWkFtMVgydVp6YjJGVlU5diI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHBzOi8vc2ltdGEua2dkci9taHNiYXNlbWluYXIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=',1717938753),
+('K5dqKRyzSnDS24e1cj5svjeyr640KY080QgF3loa',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiM0k2UnBMVjRLcUdqWHhUS05ETEZBc0pVdkxaZXlzUXd5MFJVbzM1VyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjU6Imh0dHBzOi8vc2ltdGEua2dkci9rZG9zZW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1717938450),
+('kFilUx3zyykFCriKER0zgbjPx79jimCBbrSvRVs7',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiV2pSekdQaUxLSHk3WTdtT0lyU21Qb2VjUkVRUkkzYTBnNkZBRTdhbiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHBzOi8vc2ltdGEua2dkci9rcGVtYmltYmluZyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==',1717940209),
+('ltIanT8DkaX4YUVQu6YVltuMg1qiEWmDWWw1XouW',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoicUVmS015VzkxN0JHa3k4b2F5bzJFb1dlVmxqYVV2dFltTWFSTnJSWiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjU6Imh0dHBzOi8vc2ltdGEua2dkci9rYWRtaW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1717938534),
+('NyAF8CZ1RvD5EPEsZ8eWFLGjgjrVallxX729Ljac',5,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWVRzTmt3eWxYa3FwQUFGOExQSERtZFVKaXJ3ZnQ0STVuS1dwRFBHWCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHBzOi8vc2ltdGEua2dkci9yYl91amlhbmRvc2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NTt9',1717939477),
+('qm5HYmERcY7Zap8xsfazNGSXjyD7H9XjzwMynEWM',5,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMEZoYjNLZmZBNzBGR05peXdIQ3BBZ2xxeUx1bTlWbE1IR09YOU9xWSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHBzOi8vc2ltdGEua2dkci9kb3NlbmxvZ2JpbWJpbmdhbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjU7fQ==',1717938504),
+('rD4D2TMgLIPPWEeVQ9UxGG2UYvYPguDTapjCJLj6',5,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoieFZUS3I4VGtXelNiMjFDQVRHdktMaUFyTWZVQUdKYVhycmdzOWU5RSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHBzOi8vc2ltdGEua2dkci9yYl9iaW1iaW5nYW5kb3NlbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjU7fQ==',1717940250),
+('RPaiP5seVkYGJBxqhkswKegs7qjrzsYxkeRY5LTr',6,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiQm5SOGpPZjkzYnl6ZUtwY3J2ZG9ZN21qTDJReTdnN09sWWNDOTdQayI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vc2ltdGEua2dkci9iYV9zaWRhbmdkb3NlbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjY7fQ==',1717940069),
+('vyIbtEM2T8U4MMF4wDIb0arWqGZ59TylHeuBTVai',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTHltc282ME15M2tqZlNZdm5aQkYyUjhYeVFsNmZiRktGclkzcXhCSyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHBzOi8vc2ltdGEua2dkci9rcGVtYmltYmluZyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==',1717939228),
+('WmsNB2UdK2aWnbAbiATR1KkuRbsDhF1JeuSL5Lpe',5,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMkFFcnZySWhzNnhvSFVlQXEza1Q1bzNqYzNOR0g5YmdHRE9MWjFveCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vc2ltdGEua2dkci9iYV9zaWRhbmdkb3NlbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjU7fQ==',1717940408),
+('WwA4Jy1YmkMxCYChYCr0tAASJk8p0XYuUiWRu7Gz',5,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiN0k5RFF5dUx2YXYydm15WXpEY3d0YjNTQTh4UldkaXczQXFQRDJpbiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHBzOi8vc2ltdGEua2dkci9iYV9zZW1pbmFyZG9zZW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo1O30=',1717940177);
 
 /*Table structure for table `trx_ba_seminar` */
 
@@ -188,14 +198,9 @@ CREATE TABLE `trx_ba_seminar` (
   `is_active` int(11) DEFAULT NULL,
   `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `trx_ba_seminar` */
-
-insert  into `trx_ba_seminar`(`id`,`id_mhs`,`id_dospem`,`tanggal`,`judul`,`catatan`,`note`,`status`,`is_active`,`last_update`) values 
-(1,3,5,'2024-06-15','Tes Seminar 1','Tes Seminar 1',NULL,1,1,'2024-06-08 00:07:57'),
-(2,3,5,'2024-06-14','Tes Seminar 2 tes','Tes Seminar 2 tes',NULL,2,1,'2024-06-08 00:29:53'),
-(3,3,5,'2024-06-10','Tes Seminar 3','Tes Seminar 3','Reject Daya',3,1,'2024-06-08 00:45:25');
 
 /*Table structure for table `trx_ba_sidang` */
 
@@ -212,12 +217,9 @@ CREATE TABLE `trx_ba_sidang` (
   `is_active` int(11) DEFAULT NULL,
   `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `trx_ba_sidang` */
-
-insert  into `trx_ba_sidang`(`id`,`id_mhs`,`id_dospem`,`tanggal`,`judul`,`catatan`,`hasil`,`is_active`,`last_update`) values 
-(1,3,5,'2024-06-07','Tes 1 Judul TA','Aduh ko Gitu','LULUS DENGAN PERBAIKAN',1,'2024-06-08 10:48:52');
 
 /*Table structure for table `trx_log_bimbingan` */
 
@@ -235,14 +237,9 @@ CREATE TABLE `trx_log_bimbingan` (
   `is_active` int(11) DEFAULT NULL,
   `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `trx_log_bimbingan` */
-
-insert  into `trx_log_bimbingan`(`id`,`id_mhs`,`id_dospem`,`tanggal`,`catatan`,`plant`,`note`,`status`,`is_active`,`last_update`) values 
-(1,3,5,'2024-06-06','Tes 1','Tes 1',NULL,1,1,'2024-06-07 17:57:09'),
-(2,3,5,'2024-06-07','Tes 2','Tes 2',NULL,2,1,'2024-06-08 09:19:34'),
-(3,3,5,'2024-06-08','Tes 3','Tes 3','Reject data',3,1,'2024-06-08 09:22:43');
 
 /*Table structure for table `trx_rb_bimbingan` */
 
@@ -265,12 +262,9 @@ CREATE TABLE `trx_rb_bimbingan` (
   `is_active` int(11) DEFAULT NULL,
   `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `trx_rb_bimbingan` */
-
-insert  into `trx_rb_bimbingan`(`id`,`id_mhs`,`id_dospem`,`judul`,`nilai_sp1_1`,`nilai_sp1_2`,`nilai_sp1_3`,`nilai_sp1_4`,`nilai_sp1_5`,`nilai_sp1_6`,`nilai_sp2_1`,`nilai_sp2_2`,`nilai_sp2_3`,`is_active`,`last_update`) values 
-(1,3,5,'Tes 1 Judul TA',89,89,89,89,89,89,60,60,90,1,'2024-06-08 22:39:49');
 
 /*Table structure for table `trx_rb_ujian` */
 
@@ -290,12 +284,9 @@ CREATE TABLE `trx_rb_ujian` (
   `is_active` int(11) DEFAULT NULL,
   `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `trx_rb_ujian` */
-
-insert  into `trx_rb_ujian`(`id`,`id_mhs`,`id_dospem`,`judul`,`nilai_sp1_1`,`nilai_sp1_2`,`nilai_sp1_3`,`nilai_sp1_4`,`nilai_sp1_5`,`nilai_sp1_6`,`is_active`,`last_update`) values 
-(1,3,6,'Tes 1 Judul TA',70,80,80,70,80,80,1,'2024-06-09 08:37:41');
 
 /*Table structure for table `trx_setting_bimbingan` */
 
@@ -313,13 +304,9 @@ CREATE TABLE `trx_setting_bimbingan` (
   `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `update_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `trx_setting_bimbingan` */
-
-insert  into `trx_setting_bimbingan`(`id`,`id_mhs`,`id_dospem_1`,`id_dospem_2`,`id_dospej_1`,`id_dospej_2`,`id_dospej_3`,`is_active`,`last_update`,`update_by`) values 
-(1,4,5,NULL,6,NULL,NULL,1,'2024-06-05 17:29:49',1),
-(2,3,5,NULL,6,NULL,NULL,1,'2024-06-05 17:29:49',1);
 
 /*Table structure for table `users` */
 
@@ -344,7 +331,7 @@ CREATE TABLE `users` (
   `update_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `users` */
 
@@ -354,7 +341,8 @@ insert  into `users`(`id`,`role_id`,`nik`,`name`,`no_tlp`,`email`,`email_verifie
 (3,3,'123456','MHS 1','087765443255','mhs1@gmail.com',NULL,'$2y$12$n8Ln9IzZ6PC9NfVKb30/A.TVd.q6/IDBIpj2DmfpBEsqHrZOf/bq6','123','default.jpg','-',NULL,NULL,NULL,1,1),
 (4,3,'105220001','MHS 2','082222555225552','mhs2@gmail.com',NULL,'$2y$12$TUFLEf/16qAFh7FylEdLqOpZX2wADE4HF5Ogq7v585ivazM47NqQW','123','default.jpg','-',NULL,NULL,NULL,1,1),
 (5,2,'105201','DOSEN 1','089976654321','dosen1@gmail.com','2024-06-08 09:42:31','$2y$12$HaxtXQJJ9Rijj7ehKWi2tugnGKNXYX32wdYyWApzt9g0rbRXtGM0G','123','default.jpg','53409.jpeg',NULL,'2024-06-08 09:42:31','2024-06-08 09:42:31',1,1),
-(6,2,'105202','DOSEN2','08997765432','dosen2@gmail.com',NULL,'$2y$12$aq84d6VwlVUI6pYua44QSOX2fBDSwVcEYpcI3wLswm39EKCflM2A6','123','default.jpg','-',NULL,NULL,NULL,1,1);
+(6,2,'105202','DOSEN2','08997765432','dosen2@gmail.com','2024-06-09 15:11:12','$2y$12$aq84d6VwlVUI6pYua44QSOX2fBDSwVcEYpcI3wLswm39EKCflM2A6','123','default.jpg','-',NULL,'2024-06-09 15:11:12','2024-06-09 15:11:12',1,1),
+(7,3,'556677','Tes name','089999','tes@name.com',NULL,'$2y$12$Jg3S2Q/XpEmqVI0EHAkQKuVxHxq9ovKo9dUgN2q2YSxRP7IORrmxO','1','default.jpg','-',NULL,NULL,NULL,1,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
