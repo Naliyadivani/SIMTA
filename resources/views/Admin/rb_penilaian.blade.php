@@ -20,7 +20,6 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
                             <span>List Kelola Dosen</span>
-                            <button type="button" class="btn btn-success" data-name="add">KELOLA DOSEN</button>
                         </div>
                     </div>
                     <div class="card-body">

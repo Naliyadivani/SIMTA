@@ -55,7 +55,7 @@
                                             <td>{{$val->plant}}</td>
                                             <td>
                                                 @if ($val->status == 1)
-                                                    <button type="button" class="btn btn-outline-warning btn-sm">Sbmited</button>
+                                                    <button type="button" class="btn btn-outline-warning btn-sm">Submited</button>
                                                 @elseif ($val->status == 2)
                                                     <button type="button" class="btn btn-outline-success btn-sm">Approved</button>
                                                 @elseif ($val->status == 3)
@@ -64,7 +64,7 @@
                                                         <i class="bi bi-exclamation-circle-fill"></i>
                                                     </span>
                                                 @else
-                                                    <button type="button" class="btn btn-outline-warning btn-sm">Sbmited</button>
+                                                    <button type="button" class="btn btn-outline-warning btn-sm">Submited</button>
                                                 @endif
                                             </td>
                                             <td>

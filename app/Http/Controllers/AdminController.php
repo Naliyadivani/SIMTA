@@ -72,22 +72,29 @@ class AdminController extends Controller
         $dt         = $request['data'];
         $update_by  = auth::user()->id;
 
-        $data   = array(
-            'role_id'   => $dt['role_id'],
-            'nik'       => $dt['nik'],
-            'name'      => $dt['name'],
-            'no_tlp'    => $dt['no_tlp'],
-            'email'     => $dt['email'],
-            'password'  => Hash::make($dt['password']),
-            'pass'      => $dt['password'],
-            'photo'     => $dt['photo'],
-            'ttd'       => $dt['ttd'],
-            'is_active' => 1,
-            'update_by' => $update_by,
-        );
-        DB::table('users')->insert([$data]);
+        $cek_nik    = DB::table('users')->where('nik', $dt['nik'])->where('is_active', 1)->get();
+        if(count($cek_nik > 0)){
+            return response('error');
+        }else{
 
-        return response('success');
+            $data   = array(
+                'role_id'   => $dt['role_id'],
+                'nik'       => $dt['nik'],
+                'name'      => $dt['name'],
+                'no_tlp'    => $dt['no_tlp'],
+                'email'     => $dt['email'],
+                'password'  => Hash::make($dt['password']),
+                'pass'      => $dt['password'],
+                'photo'     => $dt['photo'],
+                'ttd'       => $dt['ttd'],
+                'is_active' => 1,
+                'update_by' => $update_by,
+            );
+            DB::table('users')->insert([$data]);
+
+            return response('success');
+        }
+
     }
 
     function actshowusers(Request $request): object {
@@ -264,6 +271,18 @@ class AdminController extends Controller
             'update_by' => $update_by,
         );
         DB::table('trx_setting_bimbingan')->where('id', $dt['id'])->update($data);
+        return response('success');
+    }
+
+    function delete_kelola_dospem(Request $request): object {
+        $id         = $request['id'];
+        $update_by  = auth::user()->id;
+
+        $data   = array(
+            'is_active' => 0,
+            'update_by' => $update_by,
+        );
+        DB::table('trx_setting_bimbingan')->where('id', $id)->update($data);
         return response('success');
     }
 

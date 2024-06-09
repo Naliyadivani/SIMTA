@@ -157,7 +157,7 @@ class DosenController extends Controller
         $ckmhs      = DB::table('trx_setting_bimbingan')->where('is_active', 1)->get();
         $lismhs     = [];
         foreach($ckmhs as $key => $val){
-            if($id_dospem == $val->id_dospem_1 || $id_dospem == $val->id_dospem_2){
+            if($id_dospem == $val->id_dospem_1 || $id_dospem == $val->id_dospem_2 || $id_dospem == $val->id_dospej_1 || $id_dospem == $val->id_dospej_2 || $id_dospem == $val->id_dospej_3){
                 $lismhs[$key]   = $val->id_mhs;
             }
         }

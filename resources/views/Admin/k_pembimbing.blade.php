@@ -274,7 +274,7 @@
             id_dospej_3 : id_dospej_3
         };
 
-        if(id_mhs === '' || id_dospem_1 === '' || id_dospej_1 === ''){
+        if(id_mhs === '' || id_dospem_1 === ''){
             Swal.fire({
                 position: 'center',
                 title: 'Form is empty!',
@@ -374,7 +374,7 @@
 
         // console.log(data);
 
-        if (id === '' || id_mhs === '' || id_dospem_1 === '' || id_dospej_1 === '') {
+        if (id === '' || id_mhs === '' || id_dospem_1 === '') {
             Swal.fire({
                 position: 'center',
                 title: 'Form is empty!',
@@ -417,6 +417,56 @@
     });
 </script>
 {{-- End Js Edit Kelola Data --}}
+
+{{-- JS Delete Data --}}
+<script>
+    $(document).on("click", "[data-name='delete']", function(e) {
+        var id = $(this).attr("data-item");
+
+        Swal.fire({
+            title: 'Anda yakin?',
+            text: 'Aksi ini tidak dapat diulang!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus data!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('delete_kelola_dospem') }}",
+                    data: {id:id},
+                    cache: false,
+                    success: function(data) {
+                        Swal.fire({
+                            position:'center',
+                            title: 'Success!',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then((data) => {
+                            location.reload();
+                        })
+                    },
+                    error: function (data) {
+                        Swal.fire({
+                            position:'center',
+                            title: 'Action Not Valid!',
+                            icon: 'warning',
+                            showConfirmButton: true,
+                            // timer: 1500
+                        }).then((data) => {
+                            // location.reload();
+                        })
+                    }
+                });
+            }
+        })
+    });
+</script>
+{{-- End JS Delete Data --}}
 
 {{-- JS Datatable --}}
 <script>

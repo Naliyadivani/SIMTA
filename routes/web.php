@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('add_setting_dosen', [AdminController::class, 'add_setting_dosen'])->name('add_setting_dosen');
         Route::post('edit_kelola_dospem', [AdminController::class, 'edit_kelola_dospem'])->name('edit_kelola_dospem');
         Route::post('actshowkeloladospem', [AdminController::class, 'actshowkeloladospem'])->name('actshowkeloladospem');
+        Route::post('delete_kelola_dospem', [AdminController::class, 'delete_kelola_dospem'])->name('delete_kelola_dospem');
         // End Kelola Dosen
 
         // Rubrik penilaian
