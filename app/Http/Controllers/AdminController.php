@@ -312,7 +312,7 @@ class AdminController extends Controller
         $kategori  = 1;
         $date_start  = '2024-04-27 20:00:00';
         $date_end  = '2024-04-27 23:00:00';
-        $arr = Admin::getdatarubrikpenilaian();
+        $arr = Admin::datapdf1(1);
         echo '<pre>';
         print_r($arr);
         exit;

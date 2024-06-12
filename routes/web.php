@@ -6,6 +6,8 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PDFController;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -15,9 +17,16 @@ Route::get('/', [AuthController::class, 'ShowFormLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login_post');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('dasbor', [MainController::class, 'dasbor'])->name('dasbor');
+
+    Route::get('showpdfadmin', [MainController::class, 'showpdfadmin'])->name('showpdfadmin');
+    Route::get('pdfadmin', [MainController::class, 'pdfadmin'])->name('pdfadmin');
+
+    Route::get('showpdfmhslogbimbingan', [MainController::class, 'showpdfmhslogbimbingan'])->name('showpdfmhslogbimbingan');
+    Route::get('pdfmhslogbimbingan', [MainController::class, 'pdfmhslogbimbingan'])->name('pdfmhslogbimbingan');
 
     Route::middleware(['auth'],'role_id:1')->group(function () {
 

@@ -21,7 +21,7 @@
                         <div class="d-flex justify-content-between">
                             <span>List Log Bimbingan</span>
                             <div>
-                                <button type="button" class="btn btn-info" data-name="">Unduh PDF</button>
+                                <button type="button" class="btn btn-info" data-name="exportpdf">Unduh PDF</button>
                                 <button type="button" class="btn btn-success" data-name="add">Buat LOG BIMBINGAN</button>
                             </div>
                         </div>
@@ -169,6 +169,41 @@
     </div>
 </div>
 {{-- End Modal Note Reject --}}
+
+{{-- Modal Export PDF --}}
+<div class="modal fade" id="modal_exportpdf" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Export Log Bimbingan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-style">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Dosen Pembimbing</label>
+                                <select data-name="export_id_dospem" class="form-select select-2-export">
+                                    <option value="">-- Select Dosen Pembimbing --</option>
+                                    @foreach ($dosen as $key => $value)
+                                        <option value="{{$value->id}}">{{ $value->nik }} - {{ $value->name }}</option>
+                                    @endforeach
+                                </select>
+                                <input type="hidden" data-name="export_id_mhs" value="{{$id_mhs}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-name="action_export">Export</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal Export PDF --}}
 
 {{-- JS ADD Data --}}
 <script>
@@ -319,6 +354,46 @@
 </script>
 {{-- End JS Note Reject --}}
 
+{{-- JS Export PDF --}}
+<script>
+    $(document).on("click", "[data-name='exportpdf']", function(e) {
+        $("[data-name='export_id_dospem']").val('').trigger("change");
+        $("#modal_exportpdf").modal('show');
+    });
+
+    $(document).on("click", "[data-name='action_export']", function(e) {
+        var id_mhs      = $("[data-name='export_id_mhs']").val();
+        var id_dospem   = $("[data-name='export_id_dospem']").val();
+
+        if(id_mhs === '' || id_dospem === ''){
+            Swal.fire({
+                position: 'center',
+                title: 'Action Not Valid!',
+                icon: 'warning',
+                showConfirmButton: true,
+                // timer: 1500
+            }).then((data) => {
+                // location.reload();
+            })
+        }else{
+            var urlTemplate     = '{{route("showpdfmhslogbimbingan",["id_mhs"=>"idmhs","id_dospem"=>"iddospem"])}}';
+            var replacements    = [
+                                    {pattern:'iddospem', replacement:id_dospem},
+                                    {pattern:'idmhs', replacement:id_mhs}
+                                ];
+            // var url         = urlTemplate.replace('kategoriid', kategori);
+            replacements.forEach(function(replacement) {
+                url = urlTemplate.replace(replacement.pattern, replacement.replacement);
+            });
+
+            // console.log(url);
+            window.location.href = url;
+
+        }
+    });
+</script>
+{{-- End JS Export PDF --}}
+
 {{-- JS Datepicker --}}
 <script>
     $('input[data-name="tanggal"]').datepicker({
@@ -352,6 +427,14 @@
         width: '100%',
         dropdownParent: $("#modal_edit")
     });
+
+    $(".select-2-export").select2({
+        allowClear: false,
+        width: '100%',
+        dropdownParent: $("#modal_exportpdf")
+    });
+
+
 </script>
 {{-- End Select2 --}}
 

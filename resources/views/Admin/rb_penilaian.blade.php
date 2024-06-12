@@ -65,9 +65,9 @@
                                             </td>
                                             <td class="text-center">{{$val['nilai_akhir']}}</td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-outline-success btn-sm" data-name="" data-item="{{$val['id']}}">
+                                                <a href="{{route('pdfadmin',['id'=>$val['id']])}}" class="btn btn-outline-success btn-sm" data-name="" data-item="{{$val['id']}}">
                                                     <i class="bi bi-cloud-download"></i>Unduh PDF
-                                                </button>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

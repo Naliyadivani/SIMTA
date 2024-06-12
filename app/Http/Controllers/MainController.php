@@ -22,6 +22,7 @@ use Auth;
 use Hash;
 use Redirect;
 use DB;
+use PDF;
 
 class MainController extends Controller
 {
@@ -41,312 +42,45 @@ class MainController extends Controller
         return view('Dashboard.list')->with($data);
     }
 
-    // Kelola Pengguna
-    function kadmin(): object {
-        $arr    = DB::table('users')->where('role_id', 1)->where('is_active', 1)->get();
+    function showpdfadmin(Request $request): object {
+        $id   = $request['id'];
+        $detail = Admin::datapdf1($id);
         $data = array(
-            'idnusr'    => $this->idnusr(),
-            'title'     => 'Kelola Admin',
-            'arr'       => $arr
+            'dt' => $detail,
         );
-
-        return view('Admin.k_admin')->with($data);
+        return view('Pdf.pdfadmin')->with($data);
     }
 
-    function kdosen(): object {
-        $arr    = DB::table('users')->where('role_id', 2)->where('is_active', 1)->get();
+    function pdfadmin(Request $request): object {
+        $id   = $request['id'];
+        $detail = Admin::datapdf1($id);
         $data = array(
-            'idnusr'    => $this->idnusr(),
-            'title'     => 'Kelola Dosen',
-            'arr'       => $arr
+            'dt' => $detail
         );
-
-        return view('Admin.k_dosen')->with($data);
+        $pdf = PDF::loadView('Pdf.pdfadmin', $data);
+        return $pdf->download('Rubrik_penilaian_'.$detail['nim_mhs'].'.pdf');
     }
 
-    function kmahasiswa(): object {
-        $arr    = DB::table('users')->where('role_id', 3)->where('is_active', 1)->get();
-        $data = array(
-            'idnusr'    => $this->idnusr(),
-            'title'     => 'Kelola Mahasiswa',
-            'arr'       => $arr
-        );
-
-        return view('Admin.k_mahasiswa')->with($data);
-    }
-
-
-    function add_users(Request $request): object {
-
-        $dt         = $request['data'];
-        $update_by  = auth::user()->id;
-
-        $data   = array(
-            'role_id'   => $dt['role_id'],
-            'nik'       => $dt['nik'],
-            'name'      => $dt['name'],
-            'no_tlp'    => $dt['no_tlp'],
-            'email'     => $dt['email'],
-            'password'  => Hash::make($dt['password']),
-            'pass'      => $dt['password'],
-            'photo'     => $dt['photo'],
-            'ttd'       => $dt['ttd'],
-            'is_active' => 1,
-            'update_by' => $update_by,
-        );
-        DB::table('users')->insert([$data]);
-
-        return response('success');
-    }
-
-    function actshowusers(Request $request): object {
-        $id     = $request['id'];
-        $data   = DB::table('users')->where('id', $id)->first();
-        return response()->json($data);
-    }
-
-    function edit_users(Request $request): object {
-
-        $dt         = $request['data'];
-        $update_by  = auth::user()->id;
-
-        $data   = array(
-            'role_id'   => $dt['role_id'],
-            'nik'       => $dt['nik'],
-            'name'      => $dt['name'],
-            'no_tlp'    => $dt['no_tlp'],
-            'email'     => $dt['email'],
-            'password'  => Hash::make($dt['password']),
-            'pass'      => $dt['password'],
-            'photo'     => $dt['photo'],
-            'ttd'       => $dt['ttd'],
-            'is_active' => $dt['is_active'],
-            'update_by' => $update_by,
-        );
-        DB::table('users')->where('id', $dt['id'])->update($data);
-        return response('success');
-    }
-
-    function delete_users(Request $request): object {
-
-        $id         = $request['id'];
-        $update_by  = auth::user()->id;
-
-        $data   = array(
-            'is_active' => 0,
-            'update_by' => $update_by,
-        );
-        DB::table('users')->where('id', $id)->update($data);
-        return response('success');
-    }
-
-    function upload_ttd(Request $request): object {
-
-        $id         = $request['id'];
-        $ttd        = $request['ttd'];
-        $update_by  = auth::user()->id;
-
-        $data   = array(
-            'ttd' => $ttd,
-        );
-        DB::table('users')->where('id', $id)->update($data);
-        return response('success');
-    }
-
-    function actphoto(Request $request): object {
-
-        if ($request->hasFile('add_foto')) {
-            $fourRandomDigit = rand(10, 99999);
-            $photo      = $request->file('add_foto');
-            $fileName   = $fourRandomDigit . '.' . $photo->getClientOriginalExtension();
-
-            $path = public_path() . '/assets/profile/';
-
-            File::makeDirectory($path, 0777, true, true);
-
-            $request->file('add_foto')->move($path, $fileName);
-
-            return response($fileName);
-        } elseif ($request->hasFile('add_ttd')) {
-            $fourRandomDigit = rand(10, 99999);
-            $photo      = $request->file('add_ttd');
-            $fileName   = $fourRandomDigit . '.' . $photo->getClientOriginalExtension();
-
-            $path = public_path() . '/assets/ttd/';
-
-            File::makeDirectory($path, 0777, true, true);
-
-            $request->file('add_ttd')->move($path, $fileName);
-
-            return response($fileName);
-        } elseif ($request->hasFile('add_image')) {
-            $fourRandomDigit = rand(10, 99999);
-            $photo      = $request->file('add_image');
-            $fileName   = $fourRandomDigit . '.' . $photo->getClientOriginalExtension();
-
-            $path = public_path() . '/assets/image/';
-
-            File::makeDirectory($path, 0777, true, true);
-
-            $request->file('add_image')->move($path, $fileName);
-
-            return response($fileName);
-        } elseif ($request->hasFile('add_file')) {
-            $fourRandomDigit = rand(10, 99999);
-            $photo      = $request->file('add_file');
-            $fileName   = $fourRandomDigit . '.' . $photo->getClientOriginalExtension();
-
-            $path = public_path() . '/assets/file/';
-
-            File::makeDirectory($path, 0777, true, true);
-
-            $request->file('add_file')->move($path, $fileName);
-
-            return response($fileName);
-        } else {
-            return response('Failed');
-        }
-    }
-    // End Kelola Pengguna
-
-    // Kelola Dosen
-    function kpembimbing(): object {
-        $arr        = Admin::getdatasettingpembimbing();
-        $mhs        = DB::table('users')->where('role_id', 3)->where('is_active', 1)->get();
-        $dosen      = DB::table('users')->where('role_id', 2)->where('is_active', 1)->get();
-
-        $data = array(
-            'idnusr'    => $this->idnusr(),
-            'title'     => 'Kelola Dosen',
-            'arr'       => $arr,
-            'mhs'       => $mhs,
-            'dosen'     => $dosen
-        );
-
-        return view('Admin.k_pembimbing')->with($data);
-    }
-
-    function add_setting_dosen(Request $request): object {
-
-        $dt         = $request['data'];
-        $update_by  = auth::user()->id;
-
-        $data   = array(
-            'id_mhs'        => $dt['id_mhs'],
-            'id_dospem_1'   => $dt['id_dospem_1'],
-            'id_dospem_2'   => $dt['id_dospem_2'],
-            'id_dospej_1'   => $dt['id_dospej_1'],
-            'id_dospej_2'   => $dt['id_dospej_2'],
-            'id_dospej_3'   => $dt['id_dospej_3'],
-            'is_active'     => 1,
-            'update_by'     => $update_by,
-        );
-
-        $cek      = DB::table('trx_setting_bimbingan')->where('id_mhs', $dt['id_mhs'])->where('is_active', 1)->get();
-
-        if(count($cek) <= 0){
-            DB::table('trx_setting_bimbingan')->insert([$data]);
-            return response('success');
-        }else{
-            return response('error');
-        }
-
-    }
-
-    function actshowkeloladospem(Request $request): object {
-        $id         = $request['id'];
-        $data       = DB::table('trx_setting_bimbingan')->where('id', $id)->first();
-        return response()->json($data);
-    }
-
-    function edit_kelola_dospem(Request $request): object {
-        $dt         = $request['data'];
-        $update_by  = auth::user()->id;
-
-        $data   = array(
-            'id_mhs' => $dt['id_mhs'],
-            'id_dospem_1' => $dt['id_dospem_1'],
-            'id_dospem_2' => $dt['id_dospem_2'],
-            'id_dospej_1' => $dt['id_dospej_1'],
-            'id_dospej_2' => $dt['id_dospej_2'],
-            'id_dospej_3' => $dt['id_dospej_3'],
-            'update_by' => $update_by,
-        );
-        DB::table('trx_setting_bimbingan')->where('id', $dt['id'])->update($data);
-        return response('success');
-    }
-
-    // End Kelola Dosen
-
-    // Admin
-    function admlogbimbingan(): object {
-        $id_dospem  = auth::user()->id;
-        $arr        = DB::table('trx_detail_log_bimbingan')->select('trx_detail_log_bimbingan.*', 'b.tema', 'b.id_mhs', 'b.tanggal', 'c.name', 'c.nik')
-                    ->leftJoin('trx_log_bimbingan AS b', 'b.id', '=', 'trx_detail_log_bimbingan.id_log')
-                    ->leftJoin('users AS c', 'c.id', '=', 'b.id_mhs')
-                    ->where('trx_detail_log_bimbingan.id_dospem', $id_dospem)->where('trx_detail_log_bimbingan.is_active', 1)->get();
-        $data = array(
-            'idnusr'    => $this->idnusr(),
-            'title'     => 'Log Bimbingan',
-            'arr'       => $arr
-        );
-
-        return view('Dosen.log_bimbingan')->with($data);
-    }
-
-
-    // End Admin
-
-    // Mahasiswa
-    function mhslogbimbingan(): object {
-        $id_mhs     = auth::user()->id;
-        $arr        = DB::table('trx_log_bimbingan')->where('id_mhs', $id_mhs)->where('is_active', 1)->get();
-        $setdospem  = DB::table('trx_setting_bimbingan')->where('id_mhs', auth::user()->id)->where('is_active', 1)->first();
-        $data = array(
-            'idnusr'    => $this->idnusr(),
-            'title'     => 'Log Bimbingan',
-            'arr'       => $arr,
-            'setdospem' => $setdospem
-        );
-
-        return view('Mahasiswa.log_bimbingan')->with($data);
-    }
-
-    function add_log_bimbingan_mhs(Request $request): object {
+    function showpdfmhslogbimbingan(Request $request): object {
         $id_mhs     = $request['id_mhs'];
-        $tema       = $request['tema'];
-        $tanggal    = $request['tanggal'];
-        $detail     = $request['detail'];
-
-        $data   = array(
-            'id_mhs'    => $id_mhs,
-            'tema'      => $tema,
-            'tanggal'   => $tanggal,
-            'is_active' => 1
+        $id_dospem  = $request['id_dospem'];
+        $detail = Mahasiswa::pdflogbimbingan($id_mhs,$id_dospem);
+        $data = array(
+            'dt' => $detail,
         );
-        $log        = DB::table('trx_log_bimbingan')->insert([$data]);
-
-        if($log){
-            $arr = DB::table('trx_log_bimbingan')->where('id_mhs', $id_mhs)->where('tanggal', $tanggal)->first();
-
-            foreach($detail as $key => $val){
-                $data   = array(
-                    'id_log'    => $arr->id,
-                    'id_dospem' => $val['id_dospem'],
-                    'posisi'    => $val['posisi'],
-                    'catatan'   => $val['catatan'],
-                    'plant'     => $val['plant'],
-                    'status'    => 1,
-                    'is_active' => 1
-                );
-                DB::table('trx_detail_log_bimbingan')->insert([$data]);
-            }
-            return response('success');
-        }else{
-            return response('error');
-        }
+        return view('Pdf.pdfmhslogbimbingan')->with($data);
     }
 
-    // End Mahasiswa
+    function pdfmhslogbimbingan(Request $request): object {
+        $id_mhs     = $request['id_mhs'];
+        $id_dospem  = $request['id_dospem'];
+        $detail = Mahasiswa::pdflogbimbingan($id_mhs,$id_dospem);
+        $data = array(
+            'dt' => $detail
+        );
+        $pdf = PDF::loadView('Pdf.pdfmhslogbimbingan', $data);
+        return $pdf->download('log_bimbingan_'.$detail['nim_mhs'].'.pdf');
+    }
+
 
 }

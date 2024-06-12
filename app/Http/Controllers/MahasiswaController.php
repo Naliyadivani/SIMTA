@@ -46,7 +46,8 @@ class MahasiswaController extends Controller
             'idnusr'    => $this->idnusr(),
             'title'     => 'Log Bimbingan',
             'arr'       => $arr,
-            'dosen'     => $dosen
+            'dosen'     => $dosen,
+            'id_mhs'    => $id_mhs
         );
 
         return view('Mahasiswa.log_bimbingan')->with($data);
