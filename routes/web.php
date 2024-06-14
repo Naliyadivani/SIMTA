@@ -26,8 +26,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('pdfadmin', [MainController::class, 'pdfadmin'])->name('pdfadmin');
 
     Route::get('showpdfmhslogbimbingan', [MainController::class, 'showpdfmhslogbimbingan'])->name('showpdfmhslogbimbingan');
-    Route::post('actionpdfmhslogbimbingan', [MainController::class, 'actionpdfmhslogbimbingan'])->name('actionpdfmhslogbimbingan');
-    Route::post('pdfmhslogbimbingan', [MainController::class, 'pdfmhslogbimbingan'])->name('pdfmhslogbimbingan');
+    Route::get('actionpdfmhslogbimbingan', [MainController::class, 'actionpdfmhslogbimbingan'])->name('actionpdfmhslogbimbingan');
+    Route::get('pdfmhslogbimbingan', [MainController::class, 'pdfmhslogbimbingan'])->name('pdfmhslogbimbingan');
 
     Route::get('showpdfmhssidangta', [MainController::class, 'showpdfmhssidangta'])->name('showpdfmhssidangta');
     Route::get('pdfmhssidangta', [MainController::class, 'pdfmhssidangta'])->name('pdfmhssidangta');

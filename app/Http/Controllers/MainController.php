@@ -75,7 +75,7 @@ class MainController extends Controller
         $id_mhs     = $request['id_mhs'];
         $id_dospem  = $request['id_dospem'];
 
-        return redirect()->route("pdfmhslogbimbingan",["id_mhs"=>$id_mhs,"id_dospem"=>$id_dospem]);
+        return Redirect::route("pdfmhslogbimbingan",["id_mhs"=>$id_mhs,"id_dospem"=>$id_dospem]);
     }
 
     function pdfmhslogbimbingan(Request $request): object {
@@ -86,9 +86,7 @@ class MainController extends Controller
             'dt' => $detail
         );
         $pdf = PDF::loadView('Pdf.pdfmhslogbimbingan', $data);
-        $pdf->download('log_bimbingan_'.$detail['nim_mhs'].'.pdf');
-
-        return response('success');
+        return $pdf->download('log_bimbingan_'.$detail['nim_mhs'].'.pdf');;
     }
 
     function showpdfmhssidangta(Request $request): object {
