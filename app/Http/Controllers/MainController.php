@@ -71,6 +71,13 @@ class MainController extends Controller
         return view('Pdf.pdfmhslogbimbingan')->with($data);
     }
 
+    function actionpdfmhslogbimbingan(Request $request): object {
+        $id_mhs     = $request['id_mhs'];
+        $id_dospem  = $request['id_dospem'];
+
+        return redirect()->route("pdfmhslogbimbingan",["id_mhs"=>$id_mhs,"id_dospem"=>$id_dospem]);
+    }
+
     function pdfmhslogbimbingan(Request $request): object {
         $id_mhs     = $request['id_mhs'];
         $id_dospem  = $request['id_dospem'];
@@ -79,7 +86,32 @@ class MainController extends Controller
             'dt' => $detail
         );
         $pdf = PDF::loadView('Pdf.pdfmhslogbimbingan', $data);
-        return $pdf->download('log_bimbingan_'.$detail['nim_mhs'].'.pdf');
+        $pdf->download('log_bimbingan_'.$detail['nim_mhs'].'.pdf');
+
+        return response('success');
+    }
+
+    function showpdfmhssidangta(Request $request): object {
+        $id         = $request['id'];
+        $id_mhs     = $request['id_mhs'];
+        $id_dospem  = $request['id_dospem'];
+        $detail = Mahasiswa::pdfsidangta($id,$id_mhs,$id_dospem);
+        $data = array(
+            'dt' => $detail,
+        );
+        return view('Pdf.pdfmhssidangta')->with($data);
+    }
+
+    function pdfmhssidangta(Request $request): object {
+        $id         = $request['id'];
+        $id_mhs     = $request['id_mhs'];
+        $id_dospem  = $request['id_dospem'];
+        $detail = Mahasiswa::pdfsidangta($id,$id_mhs,$id_dospem);
+        $data = array(
+            'dt' => $detail,
+        );
+        $pdf = PDF::loadView('Pdf.pdfmhssidangta', $data);
+        return $pdf->download('BA_SIDANG'.$detail['nim_mhs'].'.pdf');
     }
 
 

@@ -73,10 +73,10 @@
                                             <div class="col-10"></div>
                                             <div class="col-2 text-end">
                                                 @if ($dt['ttd_dospem'] == '-' || $dt['ttd_dospem'] == null)
-                                                <img src="{{asset('assets/ttd/default.png')}}" alt="" style="width: 5rem;margin-right: 1.5rem;"><br>
-                                            @else
-                                                <img src="{{asset('assets/ttd/'.$dt['ttd_dospem'])}}" alt="" style="width: 5rem;margin-right: 1.5rem;"><br>
-                                            @endif
+                                                    <img src="{{asset('assets/ttd/default.png')}}" alt="" style="width: 5rem;margin-right: 1.5rem;"><br>
+                                                @else
+                                                    <img src="{{asset('assets/ttd/'.$dt['ttd_dospem'])}}" alt="" style="width: 5rem;margin-right: 1.5rem;"><br>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="row mb-3 w-100">

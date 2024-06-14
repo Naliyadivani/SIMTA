@@ -376,19 +376,27 @@
                 // location.reload();
             })
         }else{
-            var urlTemplate     = '{{route("showpdfmhslogbimbingan",["id_mhs"=>"idmhs","id_dospem"=>"iddospem"])}}';
-            var replacements    = [
-                                    {pattern:'iddospem', replacement:id_dospem},
-                                    {pattern:'idmhs', replacement:id_mhs}
-                                ];
-            // var url         = urlTemplate.replace('kategoriid', kategori);
-            replacements.forEach(function(replacement) {
-                url = urlTemplate.replace(replacement.pattern, replacement.replacement);
-            });
-
-            // console.log(url);
-            window.location.href = url;
-
+            $.ajax({
+                type: "POST",
+                url: "{{ route('pdfmhslogbimbingan') }}",
+                data: {id_mhs:id_mhs,id_dospem:id_dospem},
+                cache: false,
+                success: function(data) {
+                    console.log(data);
+                    // $("#modal_exportpdf").modal('hide');
+                },
+                error: function (data) {
+                    Swal.fire({
+                        position:'center',
+                        title: 'Action Not Valid!',
+                        icon: 'warning',
+                        showConfirmButton: true,
+                        // timer: 1500
+                    }).then((data) => {
+                        // location.reload();
+                    })
+                }
+                });
         }
     });
 </script>
