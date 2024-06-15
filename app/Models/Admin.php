@@ -240,7 +240,7 @@ class Admin extends Model
             $nip_dospej2    = '-';
             $ttd_dospej2    = '-';
         }else{
-            $arr_dospem_2           = collect(\DB::select("SELECT * FROM users WHERE id='$data->id_dospej_2'"))->first();
+            $arr_dospej_2           = collect(\DB::select("SELECT * FROM users WHERE id='$data->id_dospej_2'"))->first();
             $dospej2        = $arr_dospej_2->name;
             $nip_dospej2    = $arr_dospej_2->nik;
             $ttd_dospej2    = $arr_dospej_2->ttd;
@@ -251,7 +251,7 @@ class Admin extends Model
             $nip_dospej3    = '-';
             $ttd_dospej3    = '-';
         }else{
-            $arr_dospem_3           = collect(\DB::select("SELECT * FROM users WHERE id='$data->id_dospej_3'"))->first();
+            $arr_dospej_3           = collect(\DB::select("SELECT * FROM users WHERE id='$data->id_dospej_3'"))->first();
             $dospej3        = $arr_dospej_3->name;
             $nip_dospej3    = $arr_dospej_3->nik;
             $ttd_dospej3    = $arr_dospej_3->ttd;

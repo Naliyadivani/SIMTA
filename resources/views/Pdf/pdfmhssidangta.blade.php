@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{public_path('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     </head>
     <body>
         <main id="main" class="main">
@@ -10,7 +10,7 @@
                     <table class="table w-100">
                         <tr>
                             <td style="border: 1px solid #000000" class="text-center">
-                                <img src="{{asset('pictures/Logo_UPER.png')}}" alt="" style="width: 7rem">
+                                <img src="{{public_path('pictures/Logo_UPER.png')}}" alt="" style="width: 7rem">
                             </td>
                             <td style="border: 1px solid #000000" class="text-center p-3 d-flex align-items-center justify-content-center flex-wrap">
                                 <p style="width: 100%;margin: 0rem;font-size: 1.2rem;">Form TA-6 Berita Acara Sidang Tugas Akhir</p><br>
@@ -128,9 +128,9 @@
                         <tr>
                             <td style="vertical-align: middle;border: 1px solid #000000;" class="text-center">
                                 @if ($dt['ttd_dospem1'] == '-' || $dt['ttd_dospem1'] == null)
-                                    <img src="{{asset('assets/ttd/default.png')}}" alt="" style="width: 5rem;"><br>
+                                    <img src="{{public_path('assets/ttd/default.png')}}" alt="" style="width: 5rem;"><br>
                                 @else
-                                    <img src="{{asset('assets/ttd/'.$dt['ttd_dospem1'])}}" alt="" style="width: 5rem;"><br>
+                                    <img src="{{public_path('assets/ttd/'.$dt['ttd_dospem1'])}}" alt="" style="width: 5rem;"><br>
                                 @endif
 
                                 <span>Nama : {{$dt['dospem1']}}</span><br>
@@ -138,9 +138,9 @@
                             </td>
                             <td style="vertical-align: middle;border: 1px solid #000000;" class="text-center">
                                 @if ($dt['ttd_dospem2'] == '-' || $dt['ttd_dospem2'] == null)
-                                    <img src="{{asset('assets/ttd/default.png')}}" alt="" style="width: 5rem;"><br>
+                                    <img src="{{public_path('assets/ttd/default.png')}}" alt="" style="width: 5rem;"><br>
                                 @else
-                                    <img src="{{asset('assets/ttd/'.$dt['ttd_dospem2'])}}" alt="" style="width: 5rem;"><br>
+                                    <img src="{{public_path('assets/ttd/'.$dt['ttd_dospem2'])}}" alt="" style="width: 5rem;"><br>
                                 @endif
 
                                 <span>Nama : {{$dt['dospem2']}}</span><br>
@@ -148,9 +148,9 @@
                             </td>
                             <td style="vertical-align: middle;border: 1px solid #000000;" class="text-center">
                                 @if ($dt['ttd_dospem3'] == '-' || $dt['ttd_dospem3'] == null)
-                                    <img src="{{asset('assets/ttd/default.png')}}" alt="" style="width: 5rem;"><br>
+                                    <img src="{{public_path('assets/ttd/default.png')}}" alt="" style="width: 5rem;"><br>
                                 @else
-                                    <img src="{{asset('assets/ttd/'.$dt['ttd_dospem3'])}}" alt="" style="width: 5rem;"><br>
+                                    <img src="{{public_path('assets/ttd/'.$dt['ttd_dospem3'])}}" alt="" style="width: 5rem;"><br>
                                 @endif
 
                                 <span>Nama : {{$dt['dospej1']}}</span><br>
@@ -158,9 +158,9 @@
                             </td>
                             <td style="vertical-align: middle;border: 1px solid #000000;" class="text-center">
                                 @if ($dt['ttd_dospem4'] == '-' || $dt['ttd_dospem4'] == null)
-                                    <img src="{{asset('assets/ttd/default.png')}}" alt="" style="width: 5rem;"><br>
+                                    <img src="{{public_path('assets/ttd/default.png')}}" alt="" style="width: 5rem;"><br>
                                 @else
-                                    <img src="{{asset('assets/ttd/'.$dt['ttd_dospem4'])}}" alt="" style="width: 5rem;"><br>
+                                    <img src="{{public_path('assets/ttd/'.$dt['ttd_dospem4'])}}" alt="" style="width: 5rem;"><br>
                                 @endif
 
                                 <span>Nama : {{$dt['dospej2']}}</span><br>
@@ -168,9 +168,9 @@
                             </td>
                             <td style="vertical-align: middle;border: 1px solid #000000;" class="text-center">
                                 @if ($dt['ttd_dospem5'] == '-' || $dt['ttd_dospem5'] == null)
-                                    <img src="{{asset('assets/ttd/default.png')}}" alt="" style="width: 5rem;"><br>
+                                    <img src="{{public_path('assets/ttd/default.png')}}" alt="" style="width: 5rem;"><br>
                                 @else
-                                    <img src="{{asset('assets/ttd/'.$dt['ttd_dospem5'])}}" alt="" style="width: 5rem;"><br>
+                                    <img src="{{public_path('assets/ttd/'.$dt['ttd_dospem5'])}}" alt="" style="width: 5rem;"><br>
                                 @endif
 
                                 <span>Nama : {{$dt['dospej3']}}</span><br>
