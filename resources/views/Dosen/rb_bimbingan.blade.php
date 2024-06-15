@@ -42,7 +42,7 @@
                                     @foreach ($arr as $key => $val)
                                         @php
                                             $st     = DB::table('trx_rb_bimbingan')->where('id_mhs', $val->id)->where('id_dospem', $id_dospem)->where('is_active', 1)->first();
-                                            $jdlta  = DB::table('trx_ba_seminar')->where('id_mhs', $val->id)->where('id_dospem', $id_dospem)->where('is_active', 1)->first();
+                                            $jdlta  = DB::table('trx_ba_sidang')->where('id_mhs', $val->id)->where('id_dospem', $id_dospem)->where('is_active', 1)->first();
                                         @endphp
                                         <tr>
                                             <td>{{$no++}}</td>
