@@ -70,7 +70,6 @@
                                                             <i class="bi bi-pencil-square"></i> Nilai
                                                         </button type="button">
                                                     @endif
-
                                                 @else
                                                     <button type="button" class="btn btn-outline-info" data-name="" data-item="{{$val->id}}" disabled>
                                                         <i class="bi bi-pencil-square"></i> Nilai

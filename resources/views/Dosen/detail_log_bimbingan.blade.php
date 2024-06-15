@@ -66,12 +66,21 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-outline-danger" data-name="reject" data-item="{{$val->id}}">
-                                                    <i class="bi bi-x-circle"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-outline-success" data-name="approved" data-item="{{$val->id}}">
-                                                    <i class="bi bi-check2-all"></i>
-                                                </button>
+                                                @if ($val->status == 2 || $val->status == 3)
+                                                    <button type="button" class="btn btn-outline-danger" data-name="reject" disabled>
+                                                        <i class="bi bi-x-circle"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-outline-success" data-name="approved" disabled>
+                                                        <i class="bi bi-check2-all"></i>
+                                                    </button>
+                                                @else
+                                                    <button type="button" class="btn btn-outline-danger" data-name="reject" data-item="{{$val->id}}">
+                                                        <i class="bi bi-x-circle"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-outline-success" data-name="approved" data-item="{{$val->id}}">
+                                                        <i class="bi bi-check2-all"></i>
+                                                    </button>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
