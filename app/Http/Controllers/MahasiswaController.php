@@ -44,7 +44,7 @@ class MahasiswaController extends Controller
         $list_dosenpem  = DB::table('trx_log_bimbingan')->select(DB::raw('count(*) as total'), 'b.id', 'b.nik', 'b.name')
                         ->leftJoin('users AS b', 'b.id', '=', 'trx_log_bimbingan.id_dospem')
                         ->where('trx_log_bimbingan.id_mhs', $id_mhs)
-                        ->where('trx_log_bimbingan.is_active', 1)->get();
+                        ->where('trx_log_bimbingan.is_active', 1)->groupBy('trx_log_bimbingan.id_dospem')->get();
 
         $data = array(
             'idnusr'    => $this->idnusr(),
