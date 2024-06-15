@@ -32,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('showpdfmhssidangta', [MainController::class, 'showpdfmhssidangta'])->name('showpdfmhssidangta');
     Route::get('pdfmhssidangta', [MainController::class, 'pdfmhssidangta'])->name('pdfmhssidangta');
 
+    Route::get('showpdfmhsseminar', [MainController::class, 'showpdfmhsseminar'])->name('showpdfmhsseminar');
+    Route::get('pdfmhsseminar', [MainController::class, 'pdfmhsseminar'])->name('pdfmhsseminar');
 
     Route::middleware(['auth'],'role_id:1')->group(function () {
 

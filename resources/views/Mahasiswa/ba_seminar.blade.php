@@ -21,7 +21,12 @@
                         <div class="d-flex justify-content-between">
                             <span>List BA Seminar</span>
                             <div>
-                                <button type="button" class="btn btn-info" data-name="">Unduh PDF</button>
+                                @if (count($cekunduh) >= 1)
+                                    <a href="{{route('pdfmhsseminar',['id_mhs'=>$idnusr->id])}}" class="btn btn-info">Unduh PDF</a>
+                                @else
+                                    <button type="button" class="btn btn-info" disabled>Unduh PDF</button>
+                                @endif
+
                                 <button type="button" class="btn btn-success" data-name="add">Buat BA Seminar</button>
                             </div>
                         </div>

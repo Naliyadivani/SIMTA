@@ -184,13 +184,25 @@
                         <div class="card-style">
                             <div class="mb-3">
                                 <label for="" class="form-label">Dosen Pembimbing</label>
-                                <select data-name="export_id_dospem" class="form-select select-2-export">
-                                    <option value="">-- Select Dosen Pembimbing --</option>
-                                    @foreach ($dosen as $key => $value)
-                                        <option value="{{$value->id}}">{{ $value->nik }} - {{ $value->name }}</option>
+                            </div>
+                            <div class="mb-3">
+                                <table class="table">
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($list_dosenpem as $key => $val)
+                                        <tr>
+                                            <td>{{$no++}}</td>
+                                            <td>{{$val->nik}}</td>
+                                            <td>{{$val->name}}</td>
+                                            <td>
+                                                <a href="{{route('pdfmhslogbimbingan',['id_dospem' => $val->id,'id_mhs'=> $idnusr->id])}}" class="btn btn-info btn-sm" data-name="">
+                                                    <i class="bi bi-filetype-pdf"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     @endforeach
-                                </select>
-                                <input type="hidden" data-name="export_id_mhs" value="{{$id_mhs}}">
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -198,7 +210,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-name="action_export">Export</button>
+                <button type="button" class="btn btn-primary" data-name="">Export</button>
             </div>
         </div>
     </div>
@@ -354,71 +366,13 @@
 </script>
 {{-- End JS Note Reject --}}
 
-{{-- JS Export PDF --}}
+{{-- JS Export --}}
 <script>
     $(document).on("click", "[data-name='exportpdf']", function(e) {
-        $("[data-name='export_id_dospem']").val('').trigger("change");
         $("#modal_exportpdf").modal('show');
     });
-
-    $(document).on("click", "[data-name='action_export']", function(e) {
-        var idmhs_dt      = $("[data-name='export_id_mhs']").val();
-        var iddospem_dt   = $("[data-name='export_id_dospem']").val();
-
-        if(idmhs_dt === '' || iddospem_dt === ''){
-            Swal.fire({
-                position: 'center',
-                title: 'Action Not Valid!',
-                icon: 'warning',
-                showConfirmButton: true,
-                // timer: 1500
-            }).then((data) => {
-                // location.reload();
-            })
-        }else{
-            var urlTemplate = '{{ route('actionpdfmhslogbimbingan', ['id_dospem' => 'iddospem', 'id_mhs' => 'idmhs']) }}';
-            var replacements = [{
-                    pattern: 'idmhs',
-                    replacement: idmhs_dt
-                },
-                {
-                    pattern: 'iddospem',
-                    replacement: iddospem_dt
-                }
-            ];
-            // var url         = urlTemplate.replace('kategoriid', kategori);
-            replacements.forEach(function(replacement) {
-                url = urlTemplate.replace(replacement.pattern, replacement.replacement);
-            });
-            window.location.href = url;
-
-            $("#modal_exportpdf").modal('hide');
-
-            // $.ajax({
-            //     type: "POST",
-            //     url: "{{ route('pdfmhslogbimbingan') }}",
-            //     data: {id_mhs:id_mhs,id_dospem:id_dospem},
-            //     cache: false,
-            //     success: function(data) {
-            //         // console.log(data);
-            //         $("#modal_exportpdf").modal('hide');
-            //     },
-            //     error: function (data) {
-            //         Swal.fire({
-            //             position:'center',
-            //             title: 'Action Not Valid!',
-            //             icon: 'warning',
-            //             showConfirmButton: true,
-            //             // timer: 1500
-            //         }).then((data) => {
-            //             // location.reload();
-            //         })
-            //     }
-            // });
-        }
-    });
 </script>
-{{-- End JS Export PDF --}}
+{{-- End JS Export --}}
 
 {{-- JS Datepicker --}}
 <script>

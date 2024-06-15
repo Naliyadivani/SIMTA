@@ -112,5 +112,24 @@ class MainController extends Controller
         return $pdf->download('BA_SIDANG'.$detail['nim_mhs'].'.pdf');
     }
 
+    function showpdfmhsseminar(Request $request): object {
+        $id_mhs = auth::user()->id;
+        $detail = Mahasiswa::pdfseminar($id_mhs);
+        $data = array(
+            'dt' => $detail,
+        );
+        return view('Pdf.pdfmhsseminar')->with($data);
+    }
+
+    function pdfmhsseminar(Request $request): object {
+        $id_mhs = auth::user()->id;
+        $detail = Mahasiswa::pdfseminar($id_mhs);
+        $data = array(
+            'dt' => $detail,
+        );
+        $pdf = PDF::loadView('Pdf.pdfmhsseminar', $data);
+        return $pdf->download('BA_SEMINAR'.$detail['nim_mhs'].'.pdf');
+    }
+
 
 }

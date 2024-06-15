@@ -119,7 +119,64 @@ class Mahasiswa extends Model
         $arr['hasil_sidang']   = $ket_sid->hasil;
         $arr['catatan']   = $ket_sid->catatan;
 
+        return $arr;
+    }
+
+    public static function pdfseminar($id_mhs){
+
+        $data   = DB::table('trx_ba_seminar')->where('id_mhs', $id_mhs)->where('status', 2)->where('is_active', 1)->get();
+        $dt_mhs = collect(\DB::select("SELECT * FROM users WHERE id='$id_mhs'"))->first();
+        // $data   = collect(\DB::select("SELECT * FROM trx_setting_bimbingan WHERE id_mhs='$id_mhs' AND id_dospej_1='$id_dospem' AND is_active='1'"))->first();
+
+        $dt     = [];
+        foreach($data as $key => $val){
+            $tanggal_sidang = $val->tanggal;
+            $judul          = $val->judul;
+
+            $dp1   = collect(\DB::select("SELECT * FROM trx_setting_bimbingan WHERE id_mhs='$id_mhs' AND id_dospem_1='$val->id_dospem' AND is_active='1'"))->first();
+            $dp2   = collect(\DB::select("SELECT * FROM trx_setting_bimbingan WHERE id_mhs='$id_mhs' AND id_dospem_2='$val->id_dospem' AND is_active='1'"))->first();
+            $dj1   = collect(\DB::select("SELECT * FROM trx_setting_bimbingan WHERE id_mhs='$id_mhs' AND id_dospej_1='$val->id_dospem' AND is_active='1'"))->first();
+            $dj2   = collect(\DB::select("SELECT * FROM trx_setting_bimbingan WHERE id_mhs='$id_mhs' AND id_dospej_2='$val->id_dospem' AND is_active='1'"))->first();
+            $dj3   = collect(\DB::select("SELECT * FROM trx_setting_bimbingan WHERE id_mhs='$id_mhs' AND id_dospej_3='$val->id_dospem' AND is_active='1'"))->first();
+
+            $ttd   = collect(\DB::select("SELECT * FROM users WHERE id='$val->id_dospem'"))->first();
+            if($dp1){
+                $dt['dt_dospem_catatan_1'] = $val->catatan;
+                $dt['dt_dospem_ttd_1'] = $ttd->ttd;
+                $dt['dt_dospem_name_1'] = $ttd->name;
+                $dt['dt_dospem_nip_1'] = $ttd->nik;
+            }elseif($dp2){
+                $dt['dt_dospem_catatan_2'] = $val->catatan;
+                $dt['dt_dospem_ttd_2'] = $ttd->ttd;
+                $dt['dt_dospem_name_2'] = $ttd->name;
+                $dt['dt_dospem_nip_2'] = $ttd->nik;
+            }elseif($dj1){
+                $dt['dt_dospem_catatan_3'] = $val->catatan;
+                $dt['dt_dospem_ttd_3'] = $ttd->ttd;
+                $dt['dt_dospem_name_3'] = $ttd->name;
+                $dt['dt_dospem_nip_3'] = $ttd->nik;
+            }elseif($dj2){
+                $dt['dt_dospem_catatan_4'] = $val->catatan;
+                $dt['dt_dospem_ttd_4'] = $ttd->ttd;
+                $dt['dt_dospem_name_4'] = $ttd->name;
+                $dt['dt_dospem_nip_4'] = $ttd->nik;
+            }elseif($dj3){
+                $dt['dt_dospem_catatan_5'] = $val->catatan;
+                $dt['dt_dospem_ttd_5'] = $ttd->ttd;
+                $dt['dt_dospem_name_5'] = $ttd->name;
+                $dt['dt_dospem_nip_5'] = $ttd->nik;
+            }
+        }
+
+        $arr['nama_mhs']    = $dt_mhs->name;
+        $arr['nim_mhs']     = $dt_mhs->nik;
+        $arr['judul']       = $judul;
+        $arr['tanggal_sidang']    = $tanggal_sidang;
+        $arr['data']        = $dt;
+
 
         return $arr;
     }
+
+
 }

@@ -41,13 +41,18 @@ class MahasiswaController extends Controller
                         ->where('trx_log_bimbingan.is_active', 1)->get();
         $ckdosen    = DB::table('trx_setting_bimbingan')->where('id_mhs', auth::user()->id)->where('is_active', 1)->first();
         $dosen      = DB::table('users')->whereIn('id', [$ckdosen->id_dospem_1,$ckdosen->id_dospem_2])->where('is_active', 1)->get();
+        $list_dosenpem  = DB::table('trx_log_bimbingan')->select(DB::raw('count(*) as total'), 'b.id', 'b.nik', 'b.name')
+                        ->leftJoin('users AS b', 'b.id', '=', 'trx_log_bimbingan.id_dospem')
+                        ->where('trx_log_bimbingan.id_mhs', $id_mhs)
+                        ->where('trx_log_bimbingan.is_active', 1)->get();
 
         $data = array(
             'idnusr'    => $this->idnusr(),
             'title'     => 'Log Bimbingan',
             'arr'       => $arr,
             'dosen'     => $dosen,
-            'id_mhs'    => $id_mhs
+            'id_mhs'    => $id_mhs,
+            'list_dosenpem' => $list_dosenpem
         );
 
         return view('Mahasiswa.log_bimbingan')->with($data);
@@ -100,12 +105,14 @@ class MahasiswaController extends Controller
                         ->where('trx_ba_seminar.is_active', 1)->get();
         $ckdosen    = DB::table('trx_setting_bimbingan')->where('id_mhs', auth::user()->id)->where('is_active', 1)->first();
         $dosen      = DB::table('users')->whereIn('id', [$ckdosen->id_dospem_1,$ckdosen->id_dospem_2,$ckdosen->id_dospej_1,$ckdosen->id_dospej_2,$ckdosen->id_dospej_3])->where('is_active', 1)->get();
+        $cekunduh   =DB::table('trx_ba_seminar')->where('id_mhs', auth::user()->id)->where('status', 2)->where('is_active', 1)->get();
 
         $data = array(
             'idnusr'    => $this->idnusr(),
             'title'     => 'Berita Acara Seminar',
             'arr'       => $arr,
-            'dosen'     => $dosen
+            'dosen'     => $dosen,
+            'cekunduh'  => $cekunduh
         );
 
         return view('Mahasiswa.ba_seminar')->with($data);
