@@ -87,14 +87,14 @@ class Admin extends Model
             if($val->id_dospej_2 == null){
                 $dt[$key]['name_dospej2']  = '-';
             }else{
-                $arr_dospem_2           = collect(\DB::select("SELECT * FROM users WHERE id='$val->id_dospej_2'"))->first();
+                $arr_dospej_2           = collect(\DB::select("SELECT * FROM users WHERE id='$val->id_dospej_2'"))->first();
                 $dt[$key]['name_dospej2']  = $arr_dospej_2->nik.' - '.$arr_dospej_2->name;
             }
 
             if($val->id_dospej_3 == null){
                 $dt[$key]['name_dospej3']  = '-';
             }else{
-                $arr_dospem_3           = collect(\DB::select("SELECT * FROM users WHERE id='$val->id_dospej_3'"))->first();
+                $arr_dospej_3           = collect(\DB::select("SELECT * FROM users WHERE id='$val->id_dospej_3'"))->first();
                 $dt[$key]['name_dospej3']  = $arr_dospej_3->nik.' - '.$arr_dospej_3->name;
             }
 
