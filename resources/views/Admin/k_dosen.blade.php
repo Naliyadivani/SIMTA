@@ -154,6 +154,7 @@
                             <div class="mb-3">
                                 <label for="" class="form-label">NIP</label>
                                 <input type="text" class="form-control" id="" placeholder="NIP" data-name="edit_nik">
+                                <input type="hidden" id="" data-name="nik_old">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Name</label>
@@ -288,15 +289,27 @@
                 cache: false,
                 success: function(response) {
                     // console.log(response);
-                    Swal.fire({
-                        position: 'center',
-                        title: 'Success!',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then((response) => {
-                        location.reload();
-                    })
+                    if(response === 'success'){
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Success!',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then((response) => {
+                            location.reload();
+                        })
+                    }else{
+                        Swal.fire({
+                            position: 'center',
+                            title: 'NIP Tidak bOleh sama!',
+                            icon: 'warning',
+                            showConfirmButton: true,
+                            // timer: 1500
+                        }).then((response) => {
+                            // location.reload();
+                        })
+                    }
                 },
                 error: function(response) {
                     Swal.fire({
@@ -360,6 +373,7 @@
                 $("[data-name='edit_id']").val(data.id);
                 $("[data-name='edit_name']").val(data.name);
                 $("[data-name='edit_nik']").val(data.nik);
+                $("[data-name='nik_old']").val(data.nik);
                 $("[data-name='edit_no_tlp']").val(data.no_tlp);
                 $("[data-name='edit_email']").val(data.email);
                 $("[data-name='edit_password']").val(data.pass);
@@ -386,6 +400,7 @@
         var role_id = 2;
         var id      = $("[data-name='edit_id']").val();
         var nik     = $("[data-name='edit_nik']").val();
+        var nik_old = $("[data-name='nik_old']").val();
         var name    = $("[data-name='edit_name']").val();
         var no_tlp  = $("[data-name='edit_no_tlp']").val();
         var email   = $("[data-name='edit_email']").val();
@@ -404,6 +419,7 @@
             id : id,
             role_id : role_id,
             nik : nik,
+            nik_old : nik_old,
             name : name,
             no_tlp : no_tlp,
             email : email,
@@ -415,7 +431,7 @@
 
         // console.log(data);
 
-        if (nik === '' || name === '' || no_tlp === '' || email === '' || password === '') {
+        if (nik === '' || name === '' || no_tlp === '' || email === '' || password === '' || nik_old === '') {
             Swal.fire({
                 position: 'center',
                 title: 'Form is empty!',
@@ -431,15 +447,27 @@
                 cache: false,
                 success: function(response) {
                     // console.log(response);
-                    Swal.fire({
-                        position: 'center',
-                        title: 'Success!',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then((response) => {
-                        location.reload();
-                    })
+                    if(response === 'success'){
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Success!',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then((response) => {
+                            location.reload();
+                        })
+                    }else{
+                        Swal.fire({
+                            position: 'center',
+                            title: 'NIP Tidak boleh sama!',
+                            icon: 'warning',
+                            showConfirmButton: true,
+                            // timer: 1500
+                        }).then((response) => {
+                            // location.reload();
+                        })
+                    }
                 },
                 error: function(response) {
                     Swal.fire({

@@ -108,21 +108,45 @@ class AdminController extends Controller
         $dt         = $request['data'];
         $update_by  = auth::user()->id;
 
-        $data   = array(
-            'role_id'   => $dt['role_id'],
-            'nik'       => $dt['nik'],
-            'name'      => $dt['name'],
-            'no_tlp'    => $dt['no_tlp'],
-            'email'     => $dt['email'],
-            'password'  => Hash::make($dt['password']),
-            'pass'      => $dt['password'],
-            'photo'     => $dt['photo'],
-            'ttd'       => $dt['ttd'],
-            'is_active' => $dt['is_active'],
-            'update_by' => $update_by,
-        );
-        DB::table('users')->where('id', $dt['id'])->update($data);
-        return response('success');
+        $cek_nik    = DB::table('users')->where('nik', $dt['nik'])->where('is_active', 1)->get();
+        $nik_old    = $dt['nik_old'];
+        if(count($cek_nik) > 0){
+            if($nik_old == $dt['nik']){
+                $data   = array(
+                    'role_id'   => $dt['role_id'],
+                    'name'      => $dt['name'],
+                    'no_tlp'    => $dt['no_tlp'],
+                    'email'     => $dt['email'],
+                    'password'  => Hash::make($dt['password']),
+                    'pass'      => $dt['password'],
+                    'photo'     => $dt['photo'],
+                    'ttd'       => $dt['ttd'],
+                    'is_active' => $dt['is_active'],
+                    'update_by' => $update_by,
+                );
+                DB::table('users')->where('id', $dt['id'])->update($data);
+                return response('success');
+            }else{
+                return response('error');
+            }
+            return response('error');
+        }else{
+            $data   = array(
+                'role_id'   => $dt['role_id'],
+                'nik'       => $dt['nik'],
+                'name'      => $dt['name'],
+                'no_tlp'    => $dt['no_tlp'],
+                'email'     => $dt['email'],
+                'password'  => Hash::make($dt['password']),
+                'pass'      => $dt['password'],
+                'photo'     => $dt['photo'],
+                'ttd'       => $dt['ttd'],
+                'is_active' => $dt['is_active'],
+                'update_by' => $update_by,
+            );
+            DB::table('users')->where('id', $dt['id'])->update($data);
+            return response('success');
+        }
     }
 
     function delete_users(Request $request): object {
