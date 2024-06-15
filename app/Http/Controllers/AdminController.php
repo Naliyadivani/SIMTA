@@ -73,7 +73,7 @@ class AdminController extends Controller
         $update_by  = auth::user()->id;
 
         $cek_nik    = DB::table('users')->where('nik', $dt['nik'])->where('is_active', 1)->get();
-        if(count($cek_nik > 0)){
+        if(count($cek_nik) > 0){
             return response('error');
         }else{
 
