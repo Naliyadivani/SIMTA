@@ -42,7 +42,17 @@
                                     @foreach ($arr as $key => $val)
                                         @php
                                             $st     = DB::table('trx_rb_bimbingan')->where('id_mhs', $val->id)->where('id_dospem', $id_dospem)->where('is_active', 1)->first();
-                                            $jdlta  = DB::table('trx_ba_sidang')->where('id_mhs', $val->id)->where('id_dospem', $id_dospem)->where('is_active', 1)->first();
+
+                                            $cekset1 = DB::table('trx_setting_bimbingan')->where('id_mhs', $val->id)->where('id_dospem_1', $id_dospem)->where('is_active', 1)->first();
+                                            $cekset2 = DB::table('trx_setting_bimbingan')->where('id_mhs', $val->id)->where('id_dospem_2', $id_dospem)->where('is_active', 1)->first();
+
+                                            if (isset($cekset1)) {
+                                                $jdlta  = DB::table('trx_ba_sidang')->where('id_mhs', $val->id)->where('id_dospem', $cekset1->id_dospej_1)->where('is_active', 1)->first();
+                                            }elseif (isset($cekset2)) {
+                                                $jdlta  = DB::table('trx_ba_sidang')->where('id_mhs', $val->id)->where('id_dospem', $cekset2->id_dospej_1)->where('is_active', 1)->first();
+                                            }else {
+                                                $jdlta  = DB::table('trx_ba_sidang')->where('id_mhs', $val->id)->where('id_dospem', $id_dospem)->where('is_active', 1)->first();
+                                            }
                                         @endphp
                                         <tr>
                                             <td>{{$no++}}</td>
@@ -62,7 +72,7 @@
                                             <td>
                                                 @if ($jdlta)
                                                     @if ($st)
-                                                        <button type="button" class="btn btn-outline-info" data-name="shownilai" data-item="{{$val->id}}">
+                                                        <button type="button" class="btn btn-outline-info" data-name="shownilai" data-item="{{$val->id}}" disabled>
                                                             <i class="bi bi-pencil-square"></i> Nilai
                                                         </button type="button">
                                                     @else

@@ -279,7 +279,7 @@
                                     @if ($dt['dospej3'] == '-')
                                         -
                                     @else
-                                        {{$dt['bobo3']}}%
+                                        {{$dt['bobot3']*100}}%
                                     @endif
                                 </td>
                                 <td style="vertical-align: middle;border: 1px solid #000000;" class="text-center">

@@ -173,24 +173,40 @@ class Admin extends Model
                 $nkpej_uji3 = 0;
             }
 
-            if($nkpem_bim2 == 0){
-                $bobot_bimbingan = 50/100;
-            }else{
+            // if($nkpem_bim2 == 0){
+            //     $bobot_bimbingan = 50/100;
+            // }else{
+            //     $bobot_bimbingan = 25/100;
+            // }
+
+            // if($nkpem_sid2 == 0){
+            //     $bobot_sidang = 10/100;
+            // }else{
+            //     $bobot_sidang = 5/100;
+            // }
+
+            // if($nkpej_uji2 == 0 && $nkpej_uji3 == 0){
+            //     $bobot_penguji = 40/100;
+            // }elseif($nkpej_uji3 == 0){
+            //     $bobot_penguji = 20/100;
+            // }else{
+            //     $bobot_penguji = 13.3/100;
+            // }
+
+            if(isset($dt1->id_dospem_2)){
                 $bobot_bimbingan = 25/100;
-            }
-
-            if($nkpem_sid2 == 0){
-                $bobot_sidang = 10/100;
-            }else{
                 $bobot_sidang = 5/100;
+            }else{
+                $bobot_bimbingan = 50/100;
+                $bobot_sidang = 10/100;
             }
 
-            if($nkpej_uji2 == 0 && $nkpej_uji3 == 0){
-                $bobot_penguji = 40/100;
-            }elseif($nkpej_uji3 == 0){
+            if(isset($dt1->id_dospej_2) && isset($dt1->id_dospej_3)){
+                $bobot_penguji = 13.3/100;
+            }elseif(isset($dt1->id_dospej_3)){
                 $bobot_penguji = 20/100;
             }else{
-                $bobot_penguji = 13.3/100;
+                $bobot_penguji = 40/100;
             }
 
             $arr[$key]['nilai_akhir'] = round(($nkpem_bim1*$bobot_bimbingan)+($nkpem_sid1*$bobot_sidang)+($nkpem_bim2*$bobot_bimbingan)+($nkpem_sid2*$bobot_sidang)+($nkpej_uji1*$bobot_penguji)+($nkpej_uji2*$bobot_penguji)+($nkpej_uji3*$bobot_penguji));

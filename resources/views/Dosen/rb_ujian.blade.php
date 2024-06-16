@@ -48,12 +48,12 @@
                                             $cekset3 = DB::table('trx_setting_bimbingan')->where('id_mhs', $val->id)->where('id_dospej_3', $id_dospem)->where('is_active', 1)->first();
 
 
-                                            if ($cekset1) {
+                                            if (isset($cekset1)) {
                                                 $jdlta  = DB::table('trx_ba_sidang')->where('id_mhs', $val->id)->where('id_dospem', $cekset1->id_dospej_1)->where('is_active', 1)->first();
-                                            }elseif ($cekset2) {
-                                                $jdlta  = DB::table('trx_ba_sidang')->where('id_mhs', $val->id)->where('id_dospem', $cekset2->id_dospej_2)->where('is_active', 1)->first();
-                                            }elseif ($cekset3) {
-                                                $jdlta  = DB::table('trx_ba_sidang')->where('id_mhs', $val->id)->where('id_dospem', $cekset3->id_dospej_3)->where('is_active', 1)->first();
+                                            }elseif (isset($cekset2)) {
+                                                $jdlta  = DB::table('trx_ba_sidang')->where('id_mhs', $val->id)->where('id_dospem', $cekset2->id_dospej_1)->where('is_active', 1)->first();
+                                            }elseif (isset($cekset3)) {
+                                                $jdlta  = DB::table('trx_ba_sidang')->where('id_mhs', $val->id)->where('id_dospem', $cekset3->id_dospej_1)->where('is_active', 1)->first();
                                             }else {
                                                 $jdlta  = DB::table('trx_ba_sidang')->where('id_mhs', $val->id)->where('id_dospem', $id_dospem)->where('is_active', 1)->first();
                                             }
@@ -75,9 +75,9 @@
                                                 <td><button type="button" class="btn btn-outline-danger btn-sm">Belum Di NIlai</button></td>
                                             @endif
                                             <td>
-                                                @if ($jdlta)
-                                                    @if ($st)
-                                                        <button type="button" class="btn btn-outline-info" data-name="shownilai" data-item="{{$val->id}}">
+                                                @if (isset($jdlta))
+                                                    @if (isset($st))
+                                                        <button type="button" class="btn btn-outline-info" data-name="shownilai" data-item="{{$val->id}}" disabled>
                                                             <i class="bi bi-pencil-square"></i> Nilai
                                                         </button type="button">
                                                     @else
@@ -85,7 +85,6 @@
                                                             <i class="bi bi-pencil-square"></i> Nilai
                                                         </button type="button">
                                                     @endif
-
                                                 @else
                                                     <button type="button" class="btn btn-outline-info" data-name="" data-item="{{$val->id}}" disabled>
                                                         <i class="bi bi-pencil-square"></i> Nilai
